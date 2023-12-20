@@ -5,6 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Rubik', sans-serif;
+  scroll-behavior: smooth;
 }
 
 ul,
@@ -284,6 +285,7 @@ footer img {
   .menu {
     display: block;
     max-height: 50px;
+    cursor: pointer;
   }
 
   .navbar {
