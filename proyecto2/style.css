@@ -151,7 +151,7 @@ main {
 
 /** filter **/
 .filter {
-  width: 20%;
+  width: 15%;
   height: 60svh;
   flex-direction: column;
   align-self: flex-start;
@@ -194,10 +194,11 @@ main {
 
 /** products **/
 .products {
-  width: 80%;
+  width: 85%;
   flex-direction: column;
   padding-bottom: var(--rtc-padding-m);
   justify-content: flex-start;
+  margin-left: 15%;
 }
 
 .game {
@@ -277,53 +278,6 @@ footer img {
   height: 15px;
 }
 
-/**** pantallas pequeñas ****/
-@media (min-width: 769px) and (max-width: 1400px) {
-  .logo {
-    width: 70%;
-    padding-left: var(--rtc-padding-m);
-  }
-
-  .user {
-    width: 30%;
-    padding-right: var(--rtc-padding-m);
-  }
-
-  .hero {
-    flex-direction: column;
-  }
-
-  .filter {
-    width: 100%;
-    height: 10svh;
-    position: inherit;
-    align-items: center;
-    padding: var(--rtc-padding-s) var(--rtc-padding-s);
-  }
-  .filter input,
-  .filter select,
-  .filter button {
-    width: 140px;
-  }
-  .filters {
-    flex-direction: row;
-    width: 50%;
-  }
-
-  .labels {
-    width: auto;
-  }
-
-  .buttons {
-    flex-direction: row;
-    width: 50%;
-  }
-
-  .products {
-    width: 100%;
-  }
-}
-
 /**** media query tablet ****/
 @media (min-width: 391px) and (max-width: 768px) {
   .logo {
@@ -368,6 +322,7 @@ footer img {
 
   .products {
     width: 100%;
+    margin-left: 0;
   }
 }
 
@@ -459,6 +414,7 @@ footer img {
 
   .products {
     width: 100%;
+    margin-left: 0;
   }
 
   .game {
