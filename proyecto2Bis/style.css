@@ -279,7 +279,7 @@ footer img {
 }
 
 /**** media query tablet ****/
-@media (min-width: 391px) and (max-width: 768px) {
+@media (min-width: 763px) and (max-width: 862px) {
   .logo {
     width: 70%;
     padding-left: var(--rtc-padding-m);
@@ -327,7 +327,7 @@ footer img {
 }
 
 /**** movil ****/
-@media (max-width: 390px) {
+@media (max-width: 762px) {
   header {
     height: 10svh;
   }
