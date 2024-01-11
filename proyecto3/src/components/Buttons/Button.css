@@ -1,0 +1,23 @@
+.button {
+  padding: var(--rtc-padding-xs);
+  border-radius: var(--rtc-border-radius-button);
+  background-color: var(--rtc-color-red);
+  color: var(--rtc-color-white);
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--rtc-color-red-hover);
+}
+
+.button.S {
+  width: 100px;
+}
+
+.button.M {
+  width: 200px;
+}
+
+.button.L {
+  width: 300px;
+}

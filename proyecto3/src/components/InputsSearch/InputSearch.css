@@ -1,0 +1,25 @@
+.inputSearch {
+  padding: var(--rtc-padding-s);
+  background-color: var(--rtc-color-grey);
+  font-size: medium;
+  border-radius: var(--rtc-border-radius-min);
+}
+
+.inputSearch.L {
+  width: 100%;
+}
+
+.inputSearch.M {
+  width: 50%;
+}
+
+.inputSearch.S {
+  width: 20%;
+}
+
+.imgSearch {
+  height: 30px;
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+}

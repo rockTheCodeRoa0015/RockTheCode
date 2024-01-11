@@ -1,0 +1,54 @@
+.images {
+  width: 300px;
+  padding: var(--rtc-padding-xs);
+  transition: 1s;
+  position: relative;
+}
+
+.images:hover {
+  transform: scale(1.2);
+}
+
+.images > img {
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+}
+
+.fullImageBox {
+  width: 100%;
+  height: 100svh;
+  background-color: var(--rtc-background-fullImages);
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+
+.fullImageBox > span {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  font-size: 30px;
+  color: var(--rtc-color-white);
+  cursor: pointer;
+}
+
+.fullImageBox > img {
+  max-height: 500px;
+}
+
+.images > button {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  opacity: 0;
+}
+
+.images:hover > button {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  opacity: 1;
+}
