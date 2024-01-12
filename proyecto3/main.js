@@ -42,8 +42,16 @@ export const buscarImagen = (search) => {
       .then((result) => {
         if (result.type === 'success') {
           const photo = result.response.results
-          Images(app, photo, true)
-          console.log(photo)
+          if (photo.length !== 0) {
+            Images(app, photo, true)
+          } else {
+            while (app.firstChild) {
+              app.removeChild(app.firstChild)
+            }
+            const p = document.createElement('p')
+            p.textContent = 'No se han encontrado resultados'
+            app.appendChild(p)
+          }
         }
       })
       .catch((error) => {
