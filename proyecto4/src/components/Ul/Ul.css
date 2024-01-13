@@ -1,0 +1,15 @@
+ul {
+  list-style: none;
+}
+
+ul > li {
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@media (max-width: 549px) {
+  ul > li {
+    font-size: 15px;
+  }
+}
