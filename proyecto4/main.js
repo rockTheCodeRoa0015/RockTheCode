@@ -1,6 +1,6 @@
 import './style.css'
-import { Header } from './src/components/header/header'
-import { Footer } from './src/components/footer/footer'
+import { Header } from './src/components/Header/Header'
+import { Footer } from './src/components/Footer/Footer'
 import { Main } from './src/components/Hero/Hero'
 import data from './data/data'
 
