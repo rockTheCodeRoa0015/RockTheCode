@@ -1,5 +1,6 @@
 import './Hero.css'
 import { Ul } from '../Ul/Ul'
+import { InputSearch } from '../InputSearch/InputSearch'
 import data from '../../../data/data'
 
 export const Main = (parentNode) => {
@@ -22,17 +23,25 @@ const SectionAboutMe = (parentNode) => {
   const divContact = document.createElement('div')
   const imgMail = document.createElement('img')
   const imgLinkedin = document.createElement('img')
+  const imgGithub = document.createElement('img')
   const aMail = document.createElement('a')
   const aLinkedin = document.createElement('a')
+  const aGithub = document.createElement('a')
 
   h2.textContent = 'Sobre mi'
   imgProfile.src = data.avatar
   p.textContent = data.aboutMe
   aMail.href = 'mailto:' + data.email
   imgMail.src = './img/mail.png'
+  imgMail.title = 'mail'
   aLinkedin.href = data.linkedin
   aLinkedin.target = '_blank'
   imgLinkedin.src = './img/linkedin.png'
+  imgLinkedin.title = 'linkedin'
+  aGithub.href = data.github
+  aGithub.target = '_blank'
+  imgGithub.src = './img/github.png'
+  imgGithub.title = 'github'
 
   divProfile.classList.add('flex-container', 'aboutmeInfo')
   divInfo.classList.add('flex-container', 'profile')
@@ -42,8 +51,10 @@ const SectionAboutMe = (parentNode) => {
   divInfo.appendChild(p)
   aMail.appendChild(imgMail)
   aLinkedin.appendChild(imgLinkedin)
+  aGithub.appendChild(imgGithub)
   divContact.appendChild(aMail)
   divContact.appendChild(aLinkedin)
+  divContact.appendChild(aGithub)
 
   section.appendChild(h2)
   divProfile.appendChild(divInfo)
@@ -64,15 +75,19 @@ const SectionEducation = (parentNode) => {
   const pYear = document.createElement('p')
   const h4Courses = document.createElement('h4')
   const h4Skils = document.createElement('h4')
+  const divSearch = document.createElement('div')
+  const p = document.createElement('p')
 
   h2.textContent = 'Estudios'
   h3.textContent = data.education.degree
   h4School.textContent = data.education.university
   pYear.textContent = data.education.graduationYear
   h4Courses.textContent = 'Cursos Relevantes'
-  h4Skils.textContent = 'Skils'
+  h4Skils.textContent = 'Skills'
 
   div.classList.add('flex-container', 'educationInfo')
+  divSearch.classList.add('searchSkill')
+  p.classList.add('pSkill')
 
   let arrayCourses = []
   for (const course of data.education.relevantCourses) {
@@ -91,7 +106,10 @@ const SectionEducation = (parentNode) => {
   div.appendChild(h4Courses)
   Ul(div, arrayCourses, false, 'cursos')
   div.appendChild(h4Skils)
-  Ul(div, arraySkills, false, 'skil')
+  InputSearch(divSearch, 'Buscar Skill', 'L')
+  div.appendChild(divSearch)
+  div.appendChild(p)
+  Ul(div, arraySkills, false, 'skill')
   section.appendChild(div)
 
   parentNode.appendChild(section)
@@ -200,19 +218,47 @@ export const chargeSection = (section) => {
   const main = document.querySelector('.hero')
   switch (section) {
     case 'Sobre mi':
+      document.querySelector('.infoMenu').classList.remove('infoMenu-show')
       SectionAboutMe(main)
       break
     case 'Estudios':
+      document.querySelector('.infoMenu').classList.remove('infoMenu-show')
       SectionEducation(main)
       break
     case 'Experiencia':
+      document.querySelector('.infoMenu').classList.remove('infoMenu-show')
       SectionExperience(main)
       break
     case 'Proyectos':
+      document.querySelector('.infoMenu').classList.remove('infoMenu-show')
       SectionProjects(main)
       break
     default:
+      document.querySelector('.infoMenu').classList.remove('infoMenu-show')
       SectionAboutMe(main)
       break
+  }
+}
+
+export const searchSkill = (skill) => {
+  let arraySkills = []
+  for (const skill of data.skills) {
+    arraySkills.push(skill.toLowerCase())
+  }
+
+  if (arraySkills.find((skills) => skills === skill.toLowerCase())) {
+    let index = arraySkills.indexOf(skill)
+    const liSkill = document.getElementById('skill' + index)
+    liSkill.classList.toggle('liSkill-show')
+    setTimeout(() => {
+      liSkill.classList.toggle('liSkill-show')
+    }, '3000')
+  } else {
+    const p = document.querySelector('.pSkill')
+    p.textContent = 'Skill por adquirir'
+    p.classList.toggle('pSkill-show')
+    setTimeout(() => {
+      p.classList.toggle('pSkill-show')
+    }, '3000')
   }
 }

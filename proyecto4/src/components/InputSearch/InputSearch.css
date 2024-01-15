@@ -1,0 +1,39 @@
+.inputSearch {
+  padding: var(--rtc-padding-s);
+  background-color: var(--rtc-color-white);
+  font-size: medium;
+  border-radius: var(--rtc-border-radius-min);
+}
+
+.inputSearch.L {
+  width: 100%;
+}
+
+.inputSearch.M {
+  width: 50%;
+}
+
+.inputSearch.S {
+  width: 20%;
+}
+
+.imgSearch {
+  height: 30px;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  cursor: pointer;
+}
+
+@media (max-width: 549px) {
+  .inputSearch {
+    padding: var(--rtc-padding-xs);
+    font-size: small;
+  }
+
+  .imgSearch {
+    height: 20px;
+    top: 10px;
+    right: 20px;
+  }
+}

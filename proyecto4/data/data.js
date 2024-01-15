@@ -3,12 +3,13 @@ const data = {
   address: "Calle Rodes 22, L'Hospitalet de Llobregat, BCN",
   email: 'roa0015@gmail.com',
   linkedin: 'https://www.linkedin.com/in/jesus-roa-gonzalez-a41791125/',
+  github: 'https://github.com/rockTheCodeRoa0015/RockTheCode',
   avatar: './img/IMG-20231108-WA0009.jpg',
   aboutMe:
-    'Soy una persona apasionada con el mundo del desarrollo, me gusta programas y buscar soluciones a los problemas del dia a dia en el mundo de la programación, soy una persona abierta y divertida que le gusta trabajar en equipo y hacer que todos nos lo pasaemos bien a la hora de trabajar. Soy muy prefeccionista a la hora de trabajar, no me gusta hacer la cosas a medias y exijo lo mismo mis compañeros. Me se adaptar a cualquier desarrollo y a cualquier equipo de trabajo, y siempre dispuesto a aceptar cualquier reto que me propongan.',
+    'Soy una persona apasionada con el mundo del desarrollo, me gusta programar y buscar soluciones a los problemas del día a día en el mundo de la programación, soy una persona abierta y divertida que le gusta trabajar en equipo y hacer que todos nos lo pasemos bien a la hora de trabajar. Soy muy perfeccionista a la hora de trabajar, no me gusta hacer las cosas a medias y exijo lo mismo a mis compañeros. Me sé adaptar a cualquier desarrollo y a cualquier equipo de trabajo, y siempre dispuesto a aceptar cualquier reto que me propongan.',
 
   education: {
-    degree: 'Técnico superior en Desarrollador de aplicaciones informaticas',
+    degree: 'Técnico superior en Desarrollador de aplicaciones informáticas',
     university: 'C.E Jaume Balmes',
     graduationYear: 2008,
     relevantCourses: [
@@ -24,12 +25,12 @@ const data = {
       startDate: '2016',
       endDate: '2022',
       description:
-        'Analista Desarrollador en tecnologia OpenText en poryectos BPM, creacion de la BBDD, creacion del proyecto en AppWorks, desarrollo en BPM del Backend, desarrollo del Frontend en AppWorks con JS y despliegue de aplicaciones en clientes.',
+        'Analista Desarrollador en tecnología OpenText en proyectos BPM, creación de la BBDD, creación del proyecto en AppWorks, desarrollo en BPM del Backend, desarrollo del Frontend en AppWorks con JS y despliegue de aplicaciones en clientes.',
       client: [
         {
           name: 'Eurona',
           description:
-            'Proyecto en java, middleware para conectar los entornos de BDD con zabbix y OTRS.Administración y configuración del entorno del proceso de negocio (BPM), creación de entornos, creación de usuarios, creación de roles y creación de proyectos.'
+            'Proyecto en java, middleware para conectar los entornos de BDD con zabbix y OTRS. Administración y configuración del entorno del proceso de negocio (BPM), creación de entornos, creación de usuarios, creación de roles y creación de proyectos.'
         },
         {
           name: 'Cellnex Telecom',
@@ -89,7 +90,7 @@ const data = {
     {
       title: 'Galleria Pinterest',
       description:
-        'Recrear la pagina de Pinterst con funcionalidades JS y llamadas asincronas la API de unsplash.',
+        'Recrear la página de Pinterst con funcionalidades JS y llamadas asíncronas la API de unsplash.',
       link: 'https://github.com/rockTheCodeRoa0015/RockTheCode/tree/main/proyecto3',
       page: 'https://pr3jesusroacorregido.netlify.app/',
       preview: './img/gallery.png'

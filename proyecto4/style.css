@@ -16,6 +16,9 @@
   --rtc-color-black: black;
   --rtc-color-font: rgb(226, 147, 56);
 
+  /* Shadows */
+  --rtc-shadow-color-font: rgb(226, 147, 56, 0.5);
+
   /* BACKGROUND-COLORS */
   --rtc-primary-bg: var(--rtc-color-black);
   --rtc-background-fullImages: rgb(0, 0, 0, 0.9);
@@ -65,4 +68,5 @@ body {
   min-height: 100svh;
   background-color: var(--rtc-primary-bg);
   color: var(--rtc-color-white);
+  overflow-x: hidden;
 }
