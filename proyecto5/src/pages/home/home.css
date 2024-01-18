@@ -1,0 +1,29 @@
+.home {
+  flex-direction: column;
+  padding: var(--rtc-padding-xs) 0;
+}
+
+.juegosHome {
+  width: 80%;
+}
+
+.juegosHome > article {
+  width: 500px;
+  flex-direction: column;
+  border: var(--rtc-primary-border);
+  background-color: var(--rtc-color-black);
+  padding-bottom: var(--rtc-padding-xs);
+  gap: var(--rtc-gap-s);
+}
+
+.juegosHome > article > img {
+  width: 100%;
+  cursor: pointer;
+}
+.juegosHome > article > h3 {
+  font-size: x-large;
+}
+.juegosHome > article > p {
+  font-size: larger;
+  padding: 0 var(--rtc-padding-xs);
+}

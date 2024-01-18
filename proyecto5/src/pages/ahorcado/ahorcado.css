@@ -1,0 +1,107 @@
+.ahorcado {
+  flex-direction: column;
+  padding: var(--rtc-padding-xs) 0;
+}
+
+.juegoAhorcado {
+  width: 80%;
+  flex-wrap: nowrap;
+}
+
+.vidasAhorcado {
+  width: 20%;
+  display: none;
+}
+
+.vidasAhorcado > img {
+  height: 60px;
+}
+
+.tableroAhorcado {
+  width: 60%;
+  flex-direction: column;
+}
+
+.imgAhorcado {
+  width: 100%;
+  flex-direction: column;
+}
+
+.imgAhorcado > img {
+  width: 80%;
+}
+
+.palabraUsadaAhorcado {
+  width: 20%;
+  flex-direction: column;
+  display: none;
+}
+
+.palabraUsadaAhorcado > p {
+  font-size: larger;
+}
+
+.seacrhAhoracado {
+  width: 100%;
+  gap: var(--rtc-gap-xs);
+}
+
+.seacrhAhoracado > button {
+  width: 50px;
+}
+
+.patronus,
+.dementor,
+.voldemort {
+  display: none;
+}
+
+.palabraAhorcado {
+  display: none;
+  background-color: var(--rtc-color-black);
+  padding: var(--rtc-padding-xs);
+}
+
+.btnAhoracadoReset {
+  display: none;
+}
+
+.resultAhorcado > p {
+  font-size: large;
+}
+
+@media (min-width: 550px) and (max-width: 1100px) {
+  .juegoAhorcado {
+    flex-direction: column;
+  }
+
+  .vidasAhorcado {
+    width: 100%;
+  }
+
+  .tableroAhorcado {
+    width: 100%;
+  }
+
+  .palabraUsadaAhorcado {
+    width: 100%;
+  }
+}
+
+@media (max-width: 549px) {
+  .juegoAhorcado {
+    flex-direction: column;
+  }
+
+  .vidasAhorcado {
+    width: 100%;
+  }
+
+  .tableroAhorcado {
+    width: 100%;
+  }
+
+  .palabraUsadaAhorcado {
+    width: 100%;
+  }
+}

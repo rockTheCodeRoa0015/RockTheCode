@@ -1,0 +1,159 @@
+.rayas {
+  width: 100%;
+  flex-direction: column;
+  min-height: 85svh;
+  flex-wrap: nowrap;
+  padding: var(--rtc-padding-xs) 0;
+}
+
+.jugadores {
+  width: 100%;
+}
+.juegorayas {
+  width: 100%;
+  flex-direction: column;
+}
+
+.juegorayas > p {
+  font-size: x-large;
+}
+
+.tablero {
+  width: 650px;
+  height: 650px;
+  gap: var(--rtc-gap-s);
+}
+
+.tablero > div {
+  width: 200px;
+  height: 200px;
+  background-color: var(--rtc-background-tablero);
+  cursor: pointer;
+}
+
+#cuad1 > img,
+#cuad2 > img,
+#cuad3 > img,
+#cuad4 > img,
+#cuad5 > img,
+#cuad6 > img,
+#cuad7 > img,
+#cuad8 > img,
+#cuad9 > img {
+  height: 150px;
+}
+
+.resetRayas {
+  cursor: pointer;
+}
+
+.cuad1-show,
+.cuad2-show,
+.cuad3-show,
+.cuad4-show,
+.cuad5-show,
+.cuad6-show,
+.cuad7-show,
+.cuad8-show,
+.cuad9-show {
+  box-shadow: 0px 0px 0px 10px var(--rtc-shadow-color-font);
+  animation: parpadeo 3s;
+}
+
+@keyframes parpadeo {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 1050px) {
+  .rayas {
+    min-height: 80svh;
+  }
+}
+
+@media (min-width: 550px) and (max-width: 700px) {
+  .rayas {
+    min-height: 80svh;
+  }
+
+  .tablero {
+    width: 500px;
+    height: 500px;
+  }
+
+  .tablero > div {
+    width: 150px;
+    height: 150px;
+  }
+
+  #cuad1 > img,
+  #cuad2 > img,
+  #cuad3 > img,
+  #cuad4 > img,
+  #cuad5 > img,
+  #cuad6 > img,
+  #cuad7 > img,
+  #cuad8 > img,
+  #cuad9 > img {
+    height: 120px;
+  }
+}
+
+@media (max-width: 549px) {
+  .rayas {
+    min-height: 80svh;
+  }
+
+  .tablero {
+    width: 300px;
+    height: 300px;
+  }
+
+  .tablero > div {
+    width: 80px;
+    height: 80px;
+  }
+
+  #cuad1 > img,
+  #cuad2 > img,
+  #cuad3 > img,
+  #cuad4 > img,
+  #cuad5 > img,
+  #cuad6 > img,
+  #cuad7 > img,
+  #cuad8 > img,
+  #cuad9 > img {
+    height: 60px;
+  }
+}

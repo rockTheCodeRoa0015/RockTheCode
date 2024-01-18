@@ -1,0 +1,16 @@
+#main {
+  width: 100%;
+  min-height: 85svh;
+}
+
+@media (min-width: 550px) and (max-width: 1050px) {
+  #main {
+    min-height: 80svh;
+  }
+}
+
+@media (max-width: 549px) {
+  #main {
+    min-height: 80svh;
+  }
+}
