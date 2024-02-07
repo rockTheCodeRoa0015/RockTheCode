@@ -1,0 +1,228 @@
+.sectionSugg {
+  width: 80%;
+  flex-direction: column;
+  margin-top: var(--rtc-margin-m);
+}
+
+.formSugg {
+  width: 100%;
+  flex-direction: column;
+  background-color: var(--rtc-background-header);
+  border: var(--rtc-primary-border);
+
+  padding-bottom: var(--rtc-padding-s);
+}
+
+.infoBookSugg {
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
+.infoBookSugg > img {
+  width: 340px;
+  height: 500px;
+  cursor: pointer;
+}
+
+.infoBookSugg > input {
+  display: none;
+}
+
+.detailsSugg {
+  width: 50%;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.titleSugg,
+.authorSugg,
+.priceSugg,
+.synSugg {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--rtc-gap-xxs);
+  width: 100%;
+}
+
+.titleSugg > input,
+.authorSugg > input,
+.priceSugg > input {
+  padding: var(--rtc-padding-xs);
+  border-radius: var(--rtc-border-radius-button);
+  width: 50%;
+}
+
+.synSugg > textarea {
+  width: 80% !important;
+  height: 100px !important;
+  padding: var(--rtc-padding-xs) var(--rtc-padding-xxs);
+  resize: none;
+  border-radius: var(--rtc-border-radius-button);
+}
+
+.catSugg,
+.valSugg,
+.opinionSugg {
+  width: 100%;
+  flex-direction: column;
+  gap: var(--rtc-gap-xxs);
+}
+
+.catPSugg {
+  gap: var(--rtc-gap-xxs);
+}
+
+.opinionSugg > textarea {
+  width: 50% !important;
+  height: 100px !important;
+  padding: var(--rtc-padding-xs) var(--rtc-padding-xxs);
+  resize: none;
+  border-radius: var(--rtc-border-radius-button);
+}
+
+.pSugg {
+  background-color: var(--rtc-color-lightgrey);
+  padding: var(--rtc-padding-xs);
+  border-radius: var(--rtc-border-radius-button);
+  cursor: pointer;
+}
+
+.pSugg-show {
+  background-color: var(--rtc-color-star);
+}
+
+.starSugg > .estrella {
+  cursor: pointer;
+}
+
+.estrella {
+  width: 25px;
+  height: 25px;
+  background-color: var(--rtc-color-grey);
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+}
+
+.rellena {
+  background-color: var(--rtc-color-star);
+}
+
+.estrella:hover {
+  background-color: var(--rtc-color-star);
+}
+
+.validator {
+  display: none;
+  flex-direction: column;
+}
+
+.validator > p {
+  color: var(--rtc-color-error);
+}
+
+/***mediaquery ****/
+
+@media (min-width: 750px) and (max-width: 1000px) {
+  .infoBookSugg {
+    flex-direction: column;
+  }
+
+  .detailsSugg {
+    width: 80%;
+    align-items: center;
+  }
+
+  .titleSugg,
+  .authorSugg,
+  .priceSugg,
+  .synSugg {
+    align-items: center;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 749px) {
+  .sectionSugg {
+    margin-top: var(--rtc-margin-xl);
+  }
+
+  .infoBookSugg {
+    flex-direction: column;
+  }
+
+  .detailsSugg {
+    width: 80%;
+    align-items: center;
+  }
+
+  .titleSugg,
+  .authorSugg,
+  .priceSugg,
+  .synSugg {
+    align-items: center;
+  }
+
+  .titleSugg > input,
+  .authorSugg > input,
+  .priceSugg > input {
+    width: 90%;
+  }
+
+  .opinionSugg > textarea {
+    width: 90% !important;
+  }
+
+  .synSugg > textarea {
+    width: 90% !important;
+  }
+}
+
+@media (max-width: 499px) {
+  .sectionSugg {
+    margin-top: var(--rtc-margin-xl);
+  }
+
+  .infoBookSugg {
+    flex-direction: column;
+  }
+
+  .detailsSugg {
+    width: 80%;
+    align-items: center;
+  }
+
+  .titleSugg,
+  .authorSugg,
+  .priceSugg,
+  .synSugg {
+    align-items: center;
+  }
+
+  .infoBookSugg > img {
+    width: 200px;
+    height: 350px;
+  }
+
+  .titleSugg > input,
+  .authorSugg > input,
+  .priceSugg > input {
+    width: 90%;
+  }
+
+  .opinionSugg > textarea {
+    width: 90% !important;
+  }
+
+  .synSugg > textarea {
+    width: 90% !important;
+  }
+}

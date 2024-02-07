@@ -1,0 +1,30 @@
+.register {
+  width: 300px;
+  flex-direction: column;
+  background-color: var(--rtc-background-header);
+  border: var(--rtc-primary-border);
+  padding: var(--rtc-padding-s);
+}
+
+.register h2 {
+  font-size: xx-large;
+}
+
+.register input {
+  width: 200px;
+  padding: var(--rtc-padding-xs);
+  border-radius: var(--rtc-border-radius-button);
+}
+
+.register button {
+  width: 200px;
+  padding: var(--rtc-padding-xs);
+  border-radius: var(--rtc-border-radius-button);
+  cursor: pointer;
+}
+
+.register p {
+  font-size: medium;
+  text-align: center;
+  color: var(--rtc-color-error);
+}

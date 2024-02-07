@@ -1,0 +1,35 @@
+.login {
+  width: 300px;
+  flex-direction: column;
+  background-color: var(--rtc-background-header);
+  border: var(--rtc-primary-border);
+  padding: var(--rtc-padding-s);
+}
+
+.login > h2 {
+  font-size: xx-large;
+}
+
+.login > input {
+  width: 200px;
+  padding: var(--rtc-padding-xs);
+  border-radius: var(--rtc-border-radius-button);
+}
+
+.login > button {
+  width: 200px;
+  padding: var(--rtc-padding-xs);
+  border-radius: var(--rtc-border-radius-button);
+  cursor: pointer;
+}
+
+.login > a {
+  text-decoration: none;
+  font-size: small;
+}
+
+.login > p {
+  font-size: medium;
+  text-align: center;
+  color: var(--rtc-color-error);
+}

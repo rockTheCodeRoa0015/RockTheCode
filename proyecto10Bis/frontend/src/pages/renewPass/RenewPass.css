@@ -1,0 +1,31 @@
+.renew {
+  width: 300px;
+  flex-direction: column;
+  background-color: var(--rtc-background-header);
+  border: var(--rtc-primary-border);
+  padding: var(--rtc-padding-s);
+}
+
+.renew h2 {
+  font-size: xx-large;
+  text-align: center;
+}
+
+.renew input {
+  width: 200px;
+  padding: var(--rtc-padding-xs);
+  border-radius: var(--rtc-border-radius-button);
+}
+
+.renew button {
+  width: 200px;
+  padding: var(--rtc-padding-xs);
+  border-radius: var(--rtc-border-radius-button);
+  cursor: pointer;
+}
+
+.renew p {
+  font-size: medium;
+  text-align: center;
+  color: var(--rtc-color-error);
+}

@@ -1,0 +1,37 @@
+.tempBooks {
+  margin: var(--rtc-margin-xl) 0;
+  width: 80%;
+  flex-direction: column;
+}
+
+.tempBooks > h2 {
+  font-size: xx-large;
+}
+
+.tempBooks > select {
+  padding: var(--rtc-padding-xs);
+  border-radius: var(--rtc-border-radius-button);
+  width: 200px;
+  cursor: pointer;
+}
+
+.book {
+  flex-direction: column;
+  width: 300px;
+  height: 400px;
+  justify-content: flex-start;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+.book > img {
+  width: 200px;
+  height: 300px;
+}
+
+.book > h3 {
+  text-align: center;
+}
+
+.book:hover {
+  transform: scale(1.2);
+}
