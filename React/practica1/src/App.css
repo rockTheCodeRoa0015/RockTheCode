@@ -1,0 +1,29 @@
+#root {
+  width: 100%;
+}
+
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100svh;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+}
+
+.sumar {
+  background-color: rgb(235, 205, 71);
+  border: 3px solid black;
+}
+.restar {
+  background-color: rgb(139, 92, 247);
+  border: 3px solid blue;
+}
