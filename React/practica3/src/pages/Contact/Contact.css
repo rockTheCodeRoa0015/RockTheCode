@@ -1,0 +1,8 @@
+.contact {
+  min-height: 90svh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  background-color: rgb(131, 255, 154);
+}
