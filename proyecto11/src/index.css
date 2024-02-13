@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--rtc-primary-font);
+  color: var(--rtc-color-black);
+}
+
+:root {
+  /* FONTS */
+  --rtc-primary-font: 'Work Sans', sans-serif;
+
+  /* BRANDING COLORS */
+  --rtc-color-white: white;
+  --rtc-color-black: black;
+  --rtc-color-grey: grey;
+  --rtc-color-lightgrey: rgb(189, 187, 187);
+  --rtc-color-font: rgb(247, 241, 69);
+  --rtc-color-border: #ff6550;
+  --rtc-color-error: red;
+  --rtc-color-star: rgb(124, 241, 159);
+  --rtc-color-blue: rgb(41, 240, 240);
+
+  /* Shadows */
+  --rtc-shadow-color-font: rgb(247, 241, 69, 0.5);
+
+  /* BACKGROUND-COLORS */
+  --rtc-primary-bg: var(--rtc-color-black);
+  --rtc-background-fullImages: rgb(0, 0, 0, 0.9);
+  --rtc-background-header: beige;
+
+  /* TEXT-COLORS */
+  --rtc-primary-text: var(--rtc-color-black);
+
+  /* BORDER-COLORS */
+  --rtc-primary-border: 3px ridge var(--rtc-color-border);
+
+  /* BORDER RADIUS */
+  --rtc-border-radius-max: 100%;
+  --rtc-border-radius-min: 30px;
+  --rtc-border-radius-button: 10px;
+
+  /* SPACINGS */
+  --rtc-margin-xs: 10px;
+  --rtc-margin-s: 20px;
+  --rtc-margin-m: 30px;
+  --rtc-margin-l: 40px;
+  --rtc-margin-xl: 50px;
+  --rtc-margin-section-movil: 100px;
+  --rtc-margin-section: 150px;
+
+  --rtc-padding-xxs: 5px;
+  --rtc-padding-xs: 10px;
+  --rtc-padding-s: 20px;
+  --rtc-padding-m: 30px;
+  --rtc-padding-l: 40px;
+  --rtc-padding-xl: 50px;
+
+  --rtc-gap-xxs: 5px;
+  --rtc-gap-xs: 10px;
+  --rtc-gap-s: 20px;
+  --rtc-gap-m: 30px;
+  --rtc-gap-l: 40px;
+  --rtc-gap-xl: 50px;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--rtc-gap-m);
+  flex-wrap: wrap;
+}
+
+body {
+  min-height: 100svh;
+  width: 100%;
+}
+
+#root {
+  width: 100%;
+}

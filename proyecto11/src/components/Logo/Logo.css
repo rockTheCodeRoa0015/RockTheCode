@@ -1,0 +1,23 @@
+.Logo {
+  width: 20%;
+  font-size: xx-large;
+  font-weight: bold;
+  justify-content: flex-start !important;
+  padding-left: var(--rtc-padding-xl);
+}
+
+@media (min-width: 500px) and (max-width: 950px) {
+  .Logo {
+    width: 30%;
+    font-size: x-large;
+    padding-left: var(--rtc-padding-l);
+  }
+}
+
+@media (max-width: 499px) {
+  .Logo {
+    width: 20%;
+    font-size: medium;
+    padding-left: var(--rtc-padding-s);
+  }
+}

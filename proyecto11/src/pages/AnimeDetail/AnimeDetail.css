@@ -1,0 +1,81 @@
+.animeDetail {
+  min-height: 85svh;
+  margin-top: 10svh;
+  width: 60%;
+  padding: var(--rtc-padding-m) 0;
+}
+
+.sectionDetail {
+  width: 100%;
+  flex-wrap: nowrap !important;
+}
+
+.infoDetails {
+  flex-direction: column;
+  align-items: flex-start !important;
+}
+
+.infoDetails > p {
+  text-align: justify;
+}
+
+.genreDeatils,
+.scoreDetail {
+  gap: var(--rtc-gap-xxs) !important;
+}
+
+.genreDeatils > p {
+  background-color: var(--rtc-color-blue);
+  padding: var(--rtc-padding-xs);
+  border-radius: var(--rtc-border-radius-button);
+}
+
+.estrella {
+  width: 25px;
+  height: 25px;
+  background-color: var(--rtc-color-star);
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+}
+
+/*** mediaquery ****/
+
+@media (min-width: 1000px) and (max-width: 1250px) {
+  .animeDetail {
+    width: 80%;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 999px) {
+  .animeDetail {
+    width: 80%;
+  }
+
+  .sectionDetail {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 499px) {
+  .animeDetail {
+    width: 80%;
+  }
+
+  .sectionDetail {
+    flex-direction: column;
+  }
+
+  .sectionDetail > div > img {
+    width: 80%;
+  }
+}

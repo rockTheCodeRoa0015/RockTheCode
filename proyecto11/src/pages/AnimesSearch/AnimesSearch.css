@@ -1,0 +1,45 @@
+.animesSearch {
+  min-height: 85svh;
+  margin-top: 10svh;
+  width: 80%;
+  padding: var(--rtc-padding-m) 0;
+  flex-direction: column;
+}
+
+.animeListSearch {
+  width: 225px;
+  height: 400px;
+  justify-content: flex-start !important;
+  flex-direction: column;
+  flex-wrap: nowrap !important;
+  cursor: pointer;
+  transition: transform 0.5s;
+}
+
+.animeListSearch:hover {
+  transform: scale(1.1);
+}
+
+.animeListSearch > img {
+  width: 225px;
+  height: 320px;
+}
+
+.animeListSearch > h2 {
+  font-weight: normal;
+  font-size: medium;
+}
+
+#beforeAnimeListSearch,
+#afterAnimeListSearch {
+  padding: var(--rtc-padding-xs);
+  border-radius: var(--rtc-border-radius-button);
+  border: none;
+  background-color: var(--rtc-color-blue);
+  cursor: pointer;
+}
+
+#beforeAnimeListSearch:disabled,
+#afterAnimeListSearch:disabled {
+  background-color: var(--rtc-color-lightgrey);
+}
