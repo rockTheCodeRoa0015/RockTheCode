@@ -1,0 +1,10 @@
+.fecha {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 5svh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
