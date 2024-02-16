@@ -1,0 +1,21 @@
+.home {
+  min-height: 85svh;
+  margin-top: 10svh;
+  flex-direction: column;
+  width: 80%;
+}
+
+.home > img {
+  width: 1000px;
+}
+
+.home > p {
+  font-weight: bold;
+  font-size: x-large;
+}
+
+@media (max-width: 1250px) {
+  .home > img {
+    width: 100%;
+  }
+}

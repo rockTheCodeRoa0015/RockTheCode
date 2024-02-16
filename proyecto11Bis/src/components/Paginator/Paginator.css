@@ -1,0 +1,12 @@
+button {
+  padding: var(--rtc-padding-xs);
+  border-radius: var(--rtc-border-radius-button);
+  border: none;
+  background-color: var(--rtc-color-blue);
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: var(--rtc-color-lightgrey);
+  cursor: default;
+}

@@ -1,0 +1,127 @@
+.header {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 10svh;
+  background-color: var(--rtc-color-blue);
+  flex-wrap: nowrap !important;
+}
+
+.navHeader {
+  width: 30%;
+}
+
+.search {
+  width: 50%;
+  position: relative;
+}
+
+.search > input {
+  width: 90%;
+  padding: var(--rtc-padding-xs);
+  border-radius: var(--rtc-border-radius-button);
+  border: none;
+}
+
+.search > img {
+  height: 25px;
+  position: absolute;
+  right: 8%;
+  cursor: pointer;
+}
+
+.menu {
+  display: none;
+}
+
+.menu > img {
+  height: 50px;
+}
+
+@media (min-width: 500px) and (max-width: 950px) {
+  .header {
+    gap: var(--rtc-gap-xxs) !important;
+  }
+
+  .navHeader {
+    position: absolute;
+    width: 50%;
+    left: 0;
+    top: 10svh;
+    display: flex;
+  }
+
+  .navHeader > ul {
+    width: 100%;
+    background-color: var(--rtc-color-blue);
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: var(--rtc-padding-xs);
+    padding-bottom: var(--rtc-padding-xs);
+    transform: translateX(-200%);
+    transition: transform 0.3s;
+  }
+
+  .navHeader-show > ul {
+    transform: translateX(0);
+  }
+
+  .menu {
+    display: flex;
+    width: 15%;
+    justify-content: center;
+  }
+
+  .menu > img {
+    cursor: pointer;
+  }
+
+  .search {
+    width: 55%;
+  }
+}
+
+@media (max-width: 499px) {
+  .header {
+    gap: var(--rtc-gap-xxs) !important;
+  }
+
+  .navHeader {
+    position: absolute;
+    width: 50%;
+    left: 0;
+    top: 9.5svh;
+    display: flex;
+  }
+
+  .navHeader > ul {
+    width: 100%;
+    background-color: var(--rtc-color-blue);
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: var(--rtc-padding-xs);
+    padding-bottom: var(--rtc-padding-xs);
+    transform: translateX(-200%);
+    transition: transform 0.3s;
+  }
+
+  .navHeader-show > ul {
+    transform: translateX(0);
+  }
+
+  .menu {
+    display: flex;
+    width: 15%;
+    justify-content: center;
+    padding-right: var(--rtc-padding-xs);
+  }
+
+  .menu > img {
+    cursor: pointer;
+  }
+
+  .search {
+    width: 65%;
+  }
+}
