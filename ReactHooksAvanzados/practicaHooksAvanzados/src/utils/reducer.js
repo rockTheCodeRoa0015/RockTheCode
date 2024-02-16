@@ -6,11 +6,14 @@ export const INITIAL_STATE = {
 }
 
 export const reducer = (state, action) => {
-  let number = document.querySelector('#num').value
-  document.querySelector('#num').value = ''
   switch (action.type) {
     case 'RESULTADO':
-      const operation = getResult(state.num, parseInt(number), state.operation)
+      const operation = getResult(
+        state.num,
+        parseInt(action.num),
+        state.operation
+      )
+
       return {
         ...state,
         res: operation,
@@ -20,7 +23,7 @@ export const reducer = (state, action) => {
     default:
       return {
         ...state,
-        num: parseInt(number),
+        num: parseInt(action.num),
         operation: action.type
       }
   }
