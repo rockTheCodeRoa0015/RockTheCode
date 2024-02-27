@@ -114,39 +114,7 @@ const printOpinons = (opinions, sectionOpinion) => {
       : opinions.length
 
   for (let i = 0; i < bucle; i++) {
-    const divOpinionUser = document.createElement('div')
-    const divInfoUser = document.createElement('div')
-    const divBook = document.createElement('div')
-    const pTitle = document.createElement('p')
-    const divRate = document.createElement('div')
-    const pRate = document.createElement('p')
-    const divStar = document.createElement('div')
-    const divOpinion = document.createElement('div')
-    const pOpinion = document.createElement('p')
-
-    divOpinionUser.classList.add('flex-container', 'profileOpinionBook')
-    divInfoUser.classList.add('flex-container', 'profileTitleBook')
-    divStar.classList.add('estrella', 'rellena')
-    divRate.classList.add('flex-container', 'profileRateBook')
-    divBook.classList.add('flex-container', 'profileBookDetails')
-    divOpinion.classList.add('flex-container', 'profileOpinionText')
-
-    pTitle.textContent = arrOpinonProfile[i].books[0].title
-    pTitle.addEventListener('click', () => {
-      chargeSection('DetalleLibro', arrOpinonProfile[i].books[0]._id)
-    })
-    pRate.textContent = arrOpinonProfile[i].rating
-    pOpinion.textContent = arrOpinonProfile[i].opinion
-
-    divBook.appendChild(pTitle)
-    divRate.appendChild(pRate)
-    divRate.appendChild(divStar)
-    divInfoUser.appendChild(divBook)
-    divInfoUser.appendChild(divRate)
-    divOpinion.appendChild(pOpinion)
-    divOpinionUser.appendChild(divInfoUser)
-    divOpinionUser.appendChild(divOpinion)
-    sectionOpinion.appendChild(divOpinionUser)
+    templateOpinions(sectionOpinion, i)
   }
 
   if (arrOpinonProfile.length > NUMOPINONPROFILEPERPAGE) {
@@ -167,39 +135,7 @@ const printAfter = (sectionOpinion) => {
       : arrOpinonProfile.length
 
   for (let i = pageProfile * NUMOPINONPROFILEPERPAGE; i < bucle; i++) {
-    const divOpinionUser = document.createElement('div')
-    const divInfoUser = document.createElement('div')
-    const divBook = document.createElement('div')
-    const pTitle = document.createElement('p')
-    const divRate = document.createElement('div')
-    const pRate = document.createElement('p')
-    const divStar = document.createElement('div')
-    const divOpinion = document.createElement('div')
-    const pOpinion = document.createElement('p')
-
-    divOpinionUser.classList.add('flex-container', 'profileOpinionBook')
-    divInfoUser.classList.add('flex-container', 'profileTitleBook')
-    divStar.classList.add('estrella', 'rellena')
-    divRate.classList.add('flex-container', 'profileRateBook')
-    divBook.classList.add('flex-container', 'profileBookDetails')
-    divOpinion.classList.add('flex-container', 'profileOpinionText')
-
-    pTitle.textContent = arrOpinonProfile[i].books[0].title
-    pTitle.addEventListener('click', () => {
-      chargeSection('DetalleLibro', arrOpinonProfile[i].books[0]._id)
-    })
-    pRate.textContent = arrOpinonProfile[i].rating
-    pOpinion.textContent = arrOpinonProfile[i].opinion
-
-    divBook.appendChild(pTitle)
-    divRate.appendChild(pRate)
-    divRate.appendChild(divStar)
-    divInfoUser.appendChild(divBook)
-    divInfoUser.appendChild(divRate)
-    divOpinion.appendChild(pOpinion)
-    divOpinionUser.appendChild(divInfoUser)
-    divOpinionUser.appendChild(divOpinion)
-    sectionOpinion.appendChild(divOpinionUser)
+    templateOpinions(sectionOpinion, i)
   }
 
   pageProfile++
@@ -221,39 +157,7 @@ const printBefore = (sectionOpinion) => {
   let bucle = NUMOPINONPROFILEPERPAGE * (pageProfile - 1)
 
   for (let i = bucle - NUMOPINONPROFILEPERPAGE; i < bucle; i++) {
-    const divOpinionUser = document.createElement('div')
-    const divInfoUser = document.createElement('div')
-    const divBook = document.createElement('div')
-    const pTitle = document.createElement('p')
-    const divRate = document.createElement('div')
-    const pRate = document.createElement('p')
-    const divStar = document.createElement('div')
-    const divOpinion = document.createElement('div')
-    const pOpinion = document.createElement('p')
-
-    divOpinionUser.classList.add('flex-container', 'profileOpinionBook')
-    divInfoUser.classList.add('flex-container', 'profileTitleBook')
-    divStar.classList.add('estrella', 'rellena')
-    divRate.classList.add('flex-container', 'profileRateBook')
-    divBook.classList.add('flex-container', 'profileBookDetails')
-    divOpinion.classList.add('flex-container', 'profileOpinionText')
-
-    pTitle.textContent = arrOpinonProfile[i].books[0].title
-    pTitle.addEventListener('click', () => {
-      chargeSection('DetalleLibro', arrOpinonProfile[i].books[0]._id)
-    })
-    pRate.textContent = arrOpinonProfile[i].rating
-    pOpinion.textContent = arrOpinonProfile[i].opinion
-
-    divBook.appendChild(pTitle)
-    divRate.appendChild(pRate)
-    divRate.appendChild(divStar)
-    divInfoUser.appendChild(divBook)
-    divInfoUser.appendChild(divRate)
-    divOpinion.appendChild(pOpinion)
-    divOpinionUser.appendChild(divInfoUser)
-    divOpinionUser.appendChild(divOpinion)
-    sectionOpinion.appendChild(divOpinionUser)
+    templateOpinions(sectionOpinion, i)
   }
 
   pageProfile--
@@ -263,4 +167,40 @@ const printBefore = (sectionOpinion) => {
   }
   const btnAfter = document.querySelector('#afterProfile')
   btnAfter.disabled = false
+}
+
+const templateOpinions = (sectionOpinion, i) => {
+  const divOpinionUser = document.createElement('div')
+  const divInfoUser = document.createElement('div')
+  const divBook = document.createElement('div')
+  const pTitle = document.createElement('p')
+  const divRate = document.createElement('div')
+  const pRate = document.createElement('p')
+  const divStar = document.createElement('div')
+  const divOpinion = document.createElement('div')
+  const pOpinion = document.createElement('p')
+
+  divOpinionUser.classList.add('flex-container', 'profileOpinionBook')
+  divInfoUser.classList.add('flex-container', 'profileTitleBook')
+  divStar.classList.add('estrella', 'rellena')
+  divRate.classList.add('flex-container', 'profileRateBook')
+  divBook.classList.add('flex-container', 'profileBookDetails')
+  divOpinion.classList.add('flex-container', 'profileOpinionText')
+
+  pTitle.textContent = arrOpinonProfile[i].books[0].title
+  pTitle.addEventListener('click', () => {
+    chargeSection('DetalleLibro', arrOpinonProfile[i].books[0]._id)
+  })
+  pRate.textContent = arrOpinonProfile[i].rating
+  pOpinion.textContent = arrOpinonProfile[i].opinion
+
+  divBook.appendChild(pTitle)
+  divRate.appendChild(pRate)
+  divRate.appendChild(divStar)
+  divInfoUser.appendChild(divBook)
+  divInfoUser.appendChild(divRate)
+  divOpinion.appendChild(pOpinion)
+  divOpinionUser.appendChild(divInfoUser)
+  divOpinionUser.appendChild(divOpinion)
+  sectionOpinion.appendChild(divOpinionUser)
 }

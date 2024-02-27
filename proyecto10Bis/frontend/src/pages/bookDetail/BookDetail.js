@@ -69,7 +69,6 @@ export const BookDetails = (parentNode, id) => {
   divInfo.appendChild(divImg)
   divInfo.appendChild(divDetail)
   sectionBook.appendChild(divInfo)
-  //parentNode.appendChild(sectionBook)
 
   bookOpinion(sectionOpinion, id)
   if (localStorage.getItem('user')) {
@@ -78,15 +77,12 @@ export const BookDetails = (parentNode, id) => {
 }
 
 const bookOpinion = (parentNode, id) => {
-  //const sectionOpinion = document.querySelector('.sectionDetailsOpinion')
-
   fetch('http://localhost:3000/api/v1/opinions/getByBook/' + id)
     .then((res) => res.json())
     .then((opinions) => {
       printOpinion(opinions, parentNode, id)
     })
 
-  //parentNode.appendChild(sectionOpinion)
   if (localStorage.getItem('user')) {
     const sectionForm = document.querySelector('.detailPostOpinion')
     postOpinion(sectionForm, id)
@@ -108,86 +104,11 @@ const printOpinion = (opinions, parentNode, id) => {
 
   let bucle =
     opinions.length > NUMOPINIONDETAILPERPAGE
-      ? NUMBOOKNUMOPINIONDETAILPERPAGEPERPAGE
+      ? NUMOPINIONDETAILPERPAGE
       : opinions.length
 
   for (let i = 0; i < bucle; i++) {
-    const divOpinionUser = document.createElement('div')
-    const divInfoUser = document.createElement('div')
-    const divUser = document.createElement('div')
-    const imgUser = document.createElement('img')
-    const pUsername = document.createElement('p')
-    const divRate = document.createElement('div')
-    const pRate = document.createElement('p')
-    const divStar = document.createElement('div')
-    const divOpinion = document.createElement('div')
-    const divTextOpinon = document.createElement('div')
-    const pOpinion = document.createElement('p')
-    const btnEdit = document.createElement('button')
-    const divareaOpinon = document.createElement('div')
-    const areaOpinion = document.createElement('textarea')
-    const btnUpOp = document.createElement('button')
-
-    divOpinionUser.classList.add('flex-container', 'OpinionUserDetail')
-    //sectionOpinion.classList.add('flex-container', 'sectionDetailsOpinion')
-    divInfoUser.classList.add('flex-container', 'divDetailInfoUser')
-    divStar.classList.add('estrella', 'rellena')
-    divRate.classList.add('flex-container', 'rateDetails')
-    divUser.classList.add('flex-container', 'userDetail')
-    divOpinion.classList.add('flex-container', 'opinionDetail')
-    divTextOpinon.classList.add('flex-container', 'textOpinion')
-    divareaOpinon.classList.add('flex-container', 'areaOpinion')
-
-    imgUser.src = opinions[i].users[0].avatar
-    imgUser.id = opinions[i].users[0]._id
-    imgUser.addEventListener('click', () => {
-      if (opinions[i].users[0]._id === localStorage.getItem('_id')) {
-        chargeSection('Perfil')
-      } else {
-        if (localStorage.getItem('user')) {
-          chargeSection('OtroPerfil', opinions[i].users[0]._id)
-        }
-      }
-    })
-    pUsername.textContent = opinions[i].users[0].userName
-    pRate.textContent = opinions[i].rating
-    pOpinion.textContent = opinions[i].opinion
-    areaOpinion.textContent = opinions[i].opinion
-    areaOpinion.disabled = true
-    btnEdit.textContent = 'Editar'
-    btnEdit.addEventListener('click', () => {
-      showEdit(divTextOpinon, divareaOpinon, areaOpinion)
-    })
-    btnUpOp.textContent = 'Enviar'
-    btnUpOp.addEventListener('click', () => {
-      upOpinion(opinions[i]._id, divTextOpinon, divareaOpinon, areaOpinion, id)
-    })
-
-    divRate.appendChild(pRate)
-    divRate.appendChild(divStar)
-    divUser.appendChild(imgUser)
-    divUser.appendChild(pUsername)
-    divInfoUser.appendChild(divUser)
-    divInfoUser.appendChild(divRate)
-    divTextOpinon.appendChild(pOpinion)
-    divareaOpinon.appendChild(areaOpinion)
-    if (
-      opinions[i].users[0]._id === localStorage.getItem('_id') ||
-      localStorage.getItem('rol') === 'admin'
-    ) {
-      divTextOpinon.appendChild(btnEdit)
-      divareaOpinon.appendChild(btnUpOp)
-    }
-    divOpinion.appendChild(divTextOpinon)
-    divOpinion.appendChild(divareaOpinon)
-    divOpinionUser.appendChild(divInfoUser)
-    divOpinionUser.appendChild(divOpinion)
-    parentNode.appendChild(divOpinionUser)
-
-    if (localStorage.getItem('_id') === opinions[i].users[0]._id) {
-      const sec = document.querySelector('.detailPostOpinion')
-      sec.style.display = 'none'
-    }
+    templateOpinions(parentNode, id, i)
   }
 
   if (opinions.length > NUMOPINIONDETAILPERPAGE) {
@@ -198,7 +119,7 @@ const printOpinion = (opinions, parentNode, id) => {
 const printAfter = (parentNode, id) => {
   const divOpinion = document.querySelector('.sectionDetailsOpinion')
   while (divOpinion.firstChild) {
-    divBdivOpinionooks.removeChild(divOpinion.firstChild)
+    divOpinion.removeChild(divOpinion.firstChild)
   }
 
   let bucle =
@@ -207,96 +128,15 @@ const printAfter = (parentNode, id) => {
       : arrOpinonDetails.length
 
   for (let i = pageDetail * NUMOPINIONDETAILPERPAGE; i < bucle; i++) {
-    const divOpinionUser = document.createElement('div')
-    const divInfoUser = document.createElement('div')
-    const divUser = document.createElement('div')
-    const imgUser = document.createElement('img')
-    const pUsername = document.createElement('p')
-    const divRate = document.createElement('div')
-    const pRate = document.createElement('p')
-    const divStar = document.createElement('div')
-    const divOpinion = document.createElement('div')
-    const divTextOpinon = document.createElement('div')
-    const pOpinion = document.createElement('p')
-    const btnEdit = document.createElement('button')
-    const divareaOpinon = document.createElement('div')
-    const areaOpinion = document.createElement('textarea')
-    const btnUpOp = document.createElement('button')
-
-    divOpinionUser.classList.add('flex-container', 'OpinionUserDetail')
-    //sectionOpinion.classList.add('flex-container', 'sectionDetailsOpinion')
-    divInfoUser.classList.add('flex-container', 'divDetailInfoUser')
-    divStar.classList.add('estrella', 'rellena')
-    divRate.classList.add('flex-container', 'rateDetails')
-    divUser.classList.add('flex-container', 'userDetail')
-    divOpinion.classList.add('flex-container', 'opinionDetail')
-    divTextOpinon.classList.add('flex-container', 'textOpinion')
-    divareaOpinon.classList.add('flex-container', 'areaOpinion')
-
-    imgUser.src = arrOpinonDetails[i].users[0].avatar
-    imgUser.id = arrOpinonDetails[i].users[0]._id
-    imgUser.addEventListener('click', () => {
-      if (arrOpinonDetails[i].users[0]._id === localStorage.getItem('_id')) {
-        chargeSection('Perfil')
-      } else {
-        if (localStorage.getItem('user')) {
-          chargeSection('OtroPerfil', arrOpinonDetails[i].users[0]._id)
-        }
-      }
-    })
-    pUsername.textContent = arrOpinonDetails[i].users[0].userName
-    pRate.textContent = arrOpinonDetails[i].rating
-    pOpinion.textContent = arrOpinonDetails[i].opinion
-    areaOpinion.textContent = arrOpinonDetails[i].opinion
-    areaOpinion.disabled = true
-    btnEdit.textContent = 'Editar'
-    btnEdit.addEventListener('click', () => {
-      showEdit(divTextOpinon, divareaOpinon, areaOpinion)
-    })
-    btnUpOp.textContent = 'Enviar'
-    btnUpOp.addEventListener('click', () => {
-      upOpinion(
-        arrOpinonDetails[i]._id,
-        divTextOpinon,
-        divareaOpinon,
-        areaOpinion,
-        id
-      )
-    })
-
-    divRate.appendChild(pRate)
-    divRate.appendChild(divStar)
-    divUser.appendChild(imgUser)
-    divUser.appendChild(pUsername)
-    divInfoUser.appendChild(divUser)
-    divInfoUser.appendChild(divRate)
-    divTextOpinon.appendChild(pOpinion)
-    divareaOpinon.appendChild(areaOpinion)
-    if (
-      arrOpinonDetails[i].users[0]._id === localStorage.getItem('_id') ||
-      localStorage.getItem('rol') === 'admin'
-    ) {
-      divTextOpinon.appendChild(btnEdit)
-      divareaOpinon.appendChild(btnUpOp)
-    }
-    divOpinion.appendChild(divTextOpinon)
-    divOpinion.appendChild(divareaOpinon)
-    divOpinionUser.appendChild(divInfoUser)
-    divOpinionUser.appendChild(divOpinion)
-    parentNode.appendChild(divOpinionUser)
-
-    if (localStorage.getItem('_id') === arrOpinonDetails[i].users[0]._id) {
-      const sec = document.querySelector('.detailPostOpinion')
-      sec.style.display = 'none'
-    }
+    templateOpinions(parentNode, id, i)
   }
 
   pageDetail++
   if (pageDetail === NUMPAGESDETAIL) {
-    const btnAfter = document.querySelector('#after')
+    const btnAfter = document.querySelector('#afterDetail')
     btnAfter.disabled = true
   }
-  const btnBefore = document.querySelector('#before')
+  const btnBefore = document.querySelector('#beforeDetail')
   btnBefore.disabled = false
 }
 
@@ -309,101 +149,19 @@ const printBefore = (parentNode, id) => {
   let bucle = NUMOPINIONDETAILPERPAGE * (pageDetail - 1)
 
   for (let i = bucle - NUMOPINIONDETAILPERPAGE; i < bucle; i++) {
-    const divOpinionUser = document.createElement('div')
-    const divInfoUser = document.createElement('div')
-    const divUser = document.createElement('div')
-    const imgUser = document.createElement('img')
-    const pUsername = document.createElement('p')
-    const divRate = document.createElement('div')
-    const pRate = document.createElement('p')
-    const divStar = document.createElement('div')
-    const divOpinion = document.createElement('div')
-    const divTextOpinon = document.createElement('div')
-    const pOpinion = document.createElement('p')
-    const btnEdit = document.createElement('button')
-    const divareaOpinon = document.createElement('div')
-    const areaOpinion = document.createElement('textarea')
-    const btnUpOp = document.createElement('button')
-
-    divOpinionUser.classList.add('flex-container', 'OpinionUserDetail')
-    //sectionOpinion.classList.add('flex-container', 'sectionDetailsOpinion')
-    divInfoUser.classList.add('flex-container', 'divDetailInfoUser')
-    divStar.classList.add('estrella', 'rellena')
-    divRate.classList.add('flex-container', 'rateDetails')
-    divUser.classList.add('flex-container', 'userDetail')
-    divOpinion.classList.add('flex-container', 'opinionDetail')
-    divTextOpinon.classList.add('flex-container', 'textOpinion')
-    divareaOpinon.classList.add('flex-container', 'areaOpinion')
-
-    imgUser.src = arrOpinonDetails[i].users[0].avatar
-    imgUser.id = arrOpinonDetails[i].users[0]._id
-    imgUser.addEventListener('click', () => {
-      if (arrOpinonDetails[i].users[0]._id === localStorage.getItem('_id')) {
-        chargeSection('Perfil')
-      } else {
-        if (localStorage.getItem('user')) {
-          chargeSection('OtroPerfil', arrOpinonDetails[i].users[0]._id)
-        }
-      }
-    })
-    pUsername.textContent = arrOpinonDetails[i].users[0].userName
-    pRate.textContent = arrOpinonDetails[i].rating
-    pOpinion.textContent = arrOpinonDetails[i].opinion
-    areaOpinion.textContent = arrOpinonDetails[i].opinion
-    areaOpinion.disabled = true
-    btnEdit.textContent = 'Editar'
-    btnEdit.addEventListener('click', () => {
-      showEdit(divTextOpinon, divareaOpinon, areaOpinion)
-    })
-    btnUpOp.textContent = 'Enviar'
-    btnUpOp.addEventListener('click', () => {
-      upOpinion(
-        arrOpinonDetails[i]._id,
-        divTextOpinon,
-        divareaOpinon,
-        areaOpinion,
-        id
-      )
-    })
-
-    divRate.appendChild(pRate)
-    divRate.appendChild(divStar)
-    divUser.appendChild(imgUser)
-    divUser.appendChild(pUsername)
-    divInfoUser.appendChild(divUser)
-    divInfoUser.appendChild(divRate)
-    divTextOpinon.appendChild(pOpinion)
-    divareaOpinon.appendChild(areaOpinion)
-    if (
-      arrOpinonDetails[i].users[0]._id === localStorage.getItem('_id') ||
-      localStorage.getItem('rol') === 'admin'
-    ) {
-      divTextOpinon.appendChild(btnEdit)
-      divareaOpinon.appendChild(btnUpOp)
-    }
-    divOpinion.appendChild(divTextOpinon)
-    divOpinion.appendChild(divareaOpinon)
-    divOpinionUser.appendChild(divInfoUser)
-    divOpinionUser.appendChild(divOpinion)
-    parentNode.appendChild(divOpinionUser)
-
-    if (localStorage.getItem('_id') === arrOpinonDetails[i].users[0]._id) {
-      const sec = document.querySelector('.detailPostOpinion')
-      sec.style.display = 'none'
-    }
+    templateOpinions(parentNode, id, i)
   }
 
   pageDetail--
   if (pageDetail === 1) {
-    const btnBefore = document.querySelector('#before')
+    const btnBefore = document.querySelector('#beforeDetail')
     btnBefore.disabled = true
   }
-  const btnAfter = document.querySelector('#after')
+  const btnAfter = document.querySelector('#afterDetail')
   btnAfter.disabled = false
 }
 
 const postOpinion = (parentNode, id) => {
-  //const sectionForm = document.createElement('section')
   const h2 = document.createElement('h2')
   const form = document.createElement('div')
   const divEstrellas = document.createElement('div')
@@ -420,7 +178,6 @@ const postOpinion = (parentNode, id) => {
     divEstrellas.appendChild(estrella)
   }
 
-  //sectionForm.classList.add('flex-container', 'detailPostOpinion')
   form.classList.add('flex-container', 'formOpinion')
   divEstrellas.classList.add('flex-container', 'starOpinion')
 
@@ -437,7 +194,6 @@ const postOpinion = (parentNode, id) => {
   form.appendChild(btnSend)
   parentNode.appendChild(h2)
   parentNode.appendChild(form)
-  //parentNode.appendChild(sectionForm)
 }
 
 const colorStars = (id) => {
@@ -510,7 +266,6 @@ const sendOpinion = async (textArea, bookid) => {
     const dataResUp = await dataUp.json()
     if (dataResUp.mensaje) {
       updateRateBook(bookid, divStar.length)
-      //chargeSection('DetalleLibro', bookid)
     } else {
       alert('Error al enviar la opinion')
     }
@@ -633,4 +388,88 @@ const btnPaginator = (parentNode, id, sectionOpinion) => {
   divBtn.appendChild(btnBefore)
   divBtn.appendChild(btnAfter)
   parentNode.appendChild(divBtn)
+}
+
+const templateOpinions = (parentNode, id, i) => {
+  const divOpinionUser = document.createElement('div')
+  const divInfoUser = document.createElement('div')
+  const divUser = document.createElement('div')
+  const imgUser = document.createElement('img')
+  const pUsername = document.createElement('p')
+  const divRate = document.createElement('div')
+  const pRate = document.createElement('p')
+  const divStar = document.createElement('div')
+  const divOpinion = document.createElement('div')
+  const divTextOpinon = document.createElement('div')
+  const pOpinion = document.createElement('p')
+  const btnEdit = document.createElement('button')
+  const divareaOpinon = document.createElement('div')
+  const areaOpinion = document.createElement('textarea')
+  const btnUpOp = document.createElement('button')
+
+  divOpinionUser.classList.add('flex-container', 'OpinionUserDetail')
+  divInfoUser.classList.add('flex-container', 'divDetailInfoUser')
+  divStar.classList.add('estrella', 'rellena')
+  divRate.classList.add('flex-container', 'rateDetails')
+  divUser.classList.add('flex-container', 'userDetail')
+  divOpinion.classList.add('flex-container', 'opinionDetail')
+  divTextOpinon.classList.add('flex-container', 'textOpinion')
+  divareaOpinon.classList.add('flex-container', 'areaOpinion')
+
+  imgUser.src = arrOpinonDetails[i].users[0].avatar
+  imgUser.id = arrOpinonDetails[i].users[0]._id
+  imgUser.addEventListener('click', () => {
+    if (arrOpinonDetails[i].users[0]._id === localStorage.getItem('_id')) {
+      chargeSection('Perfil')
+    } else {
+      if (localStorage.getItem('user')) {
+        chargeSection('OtroPerfil', arrOpinonDetails[i].users[0]._id)
+      }
+    }
+  })
+  pUsername.textContent = arrOpinonDetails[i].users[0].userName
+  pRate.textContent = arrOpinonDetails[i].rating
+  pOpinion.textContent = arrOpinonDetails[i].opinion
+  areaOpinion.textContent = arrOpinonDetails[i].opinion
+  areaOpinion.disabled = true
+  btnEdit.textContent = 'Editar'
+  btnEdit.addEventListener('click', () => {
+    showEdit(divTextOpinon, divareaOpinon, areaOpinion)
+  })
+  btnUpOp.textContent = 'Enviar'
+  btnUpOp.addEventListener('click', () => {
+    upOpinion(
+      arrOpinonDetails[i]._id,
+      divTextOpinon,
+      divareaOpinon,
+      areaOpinion,
+      id
+    )
+  })
+
+  divRate.appendChild(pRate)
+  divRate.appendChild(divStar)
+  divUser.appendChild(imgUser)
+  divUser.appendChild(pUsername)
+  divInfoUser.appendChild(divUser)
+  divInfoUser.appendChild(divRate)
+  divTextOpinon.appendChild(pOpinion)
+  divareaOpinon.appendChild(areaOpinion)
+  if (
+    arrOpinonDetails[i].users[0]._id === localStorage.getItem('_id') ||
+    localStorage.getItem('rol') === 'admin'
+  ) {
+    divTextOpinon.appendChild(btnEdit)
+    divareaOpinon.appendChild(btnUpOp)
+  }
+  divOpinion.appendChild(divTextOpinon)
+  divOpinion.appendChild(divareaOpinon)
+  divOpinionUser.appendChild(divInfoUser)
+  divOpinionUser.appendChild(divOpinion)
+  parentNode.appendChild(divOpinionUser)
+
+  if (localStorage.getItem('_id') === arrOpinonDetails[i].users[0]._id) {
+    const sec = document.querySelector('.detailPostOpinion')
+    sec.style.display = 'none'
+  }
 }

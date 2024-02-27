@@ -76,23 +76,7 @@ const printBooks = (books, div) => {
   let bucle = books.length > NUMBOOKPERPAGE ? NUMBOOKPERPAGE : books.length
 
   for (let i = 0; i < bucle; i++) {
-    const article = document.createElement('article')
-    const divImg = document.createElement('div')
-    const img = document.createElement('img')
-    const h3 = document.createElement('h3')
-
-    img.src = books[i].cover
-    h3.textContent = books[i].title
-    article.id = books[i]._id
-
-    article.classList.add('flex-container', 'book')
-    divImg.appendChild(img)
-    article.appendChild(divImg)
-    article.appendChild(h3)
-    article.addEventListener('click', () => {
-      chargeSection('DetalleLibro', books[i]._id)
-    })
-    div.appendChild(article)
+    templateBooksDiv(div, i)
   }
 
   if (books.length > NUMBOOKPERPAGE) {
@@ -112,23 +96,7 @@ const printAfter = () => {
       : arrBook.length
 
   for (let i = page * NUMBOOKPERPAGE; i < bucle; i++) {
-    const article = document.createElement('article')
-    const divImg = document.createElement('div')
-    const img = document.createElement('img')
-    const h3 = document.createElement('h3')
-
-    img.src = arrBook[i].cover
-    h3.textContent = arrBook[i].title
-    article.id = arrBook[i]._id
-
-    article.classList.add('flex-container', 'book')
-    divImg.appendChild(img)
-    article.appendChild(divImg)
-    article.appendChild(h3)
-    article.addEventListener('click', () => {
-      chargeSection('DetalleLibro', arrBook[i]._id)
-    })
-    divBooks.appendChild(article)
+    templateBooksDiv(divBooks, i)
   }
 
   page++
@@ -149,23 +117,7 @@ const printBefore = () => {
   let bucle = NUMBOOKPERPAGE * (page - 1)
 
   for (let i = bucle - NUMBOOKPERPAGE; i < bucle; i++) {
-    const article = document.createElement('article')
-    const divImg = document.createElement('div')
-    const img = document.createElement('img')
-    const h3 = document.createElement('h3')
-
-    img.src = arrBook[i].cover
-    h3.textContent = arrBook[i].title
-    article.id = arrBook[i]._id
-
-    article.classList.add('flex-container', 'book')
-    divImg.appendChild(img)
-    article.appendChild(divImg)
-    article.appendChild(h3)
-    article.addEventListener('click', () => {
-      chargeSection('DetalleLibro', arrBook[i]._id)
-    })
-    divBooks.appendChild(article)
+    templateBooksDiv(divBooks, i)
   }
 
   page--
@@ -194,10 +146,7 @@ const getCategoriesBooks = (id) => {
     while (divBooks.firstChild) {
       divBooks.removeChild(divBooks.firstChild)
     }
-    //section.removeChild(divSection)
 
-    //const div = document.createElement('div')
-    //div.classList.add('flex-container')
     fetch('http://localhost:3000/api/v1/categories/' + id)
       .then((res) => res.json())
       .then((categoria) => {
@@ -211,7 +160,6 @@ const getCategoriesBooks = (id) => {
           divBooks.appendChild(p)
         }
       })
-    //section.appendChild(divBooks)
   } else {
     chargeSection('Libros')
   }
@@ -259,4 +207,24 @@ const getCategories = (parentNode, section) => {
     getCategoriesBooks(event.target.value)
   })
   section.appendChild(select)
+}
+
+const templateBooksDiv = (div, i) => {
+  const article = document.createElement('article')
+  const divImg = document.createElement('div')
+  const img = document.createElement('img')
+  const h3 = document.createElement('h3')
+
+  img.src = arrBook[i].cover
+  h3.textContent = arrBook[i].title
+  article.id = arrBook[i]._id
+
+  article.classList.add('flex-container', 'book')
+  divImg.appendChild(img)
+  article.appendChild(divImg)
+  article.appendChild(h3)
+  article.addEventListener('click', () => {
+    chargeSection('DetalleLibro', arrBook[i]._id)
+  })
+  div.appendChild(article)
 }
