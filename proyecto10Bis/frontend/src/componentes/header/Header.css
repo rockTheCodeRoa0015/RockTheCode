@@ -48,6 +48,7 @@
   width: 90%;
   padding: var(--rtc-padding-xs);
   border-radius: var(--rtc-border-radius-button);
+  border: var(--rtc-input-border);
 }
 
 .search > img {
@@ -81,7 +82,7 @@
 }
 
 .profile {
-  position: absolute;
+  position: fixed;
   right: 20px;
   top: 100px;
   background-color: var(--rtc-background-header);

@@ -27,7 +27,7 @@ export const TemplateLogin = (parentNode) => {
 
   section.classList.add('flex-container', 'login')
 
-  btn.addEventListener('click', () => Login())
+  btn.addEventListener('click', () => Login('msnLogin', 'username', 'password'))
   aNewUser.addEventListener('click', () => {
     chargeSection('Regitro')
   })
@@ -46,9 +46,9 @@ export const TemplateLogin = (parentNode) => {
   parentNode.appendChild(section)
 }
 
-const Login = async () => {
-  const username = document.querySelector('#username').value
-  const password = document.querySelector('#password').value
+export const Login = async (msgElement, usernameId, passwordId) => {
+  const username = document.querySelector(`#${usernameId}`).value
+  const password = document.querySelector(`#${passwordId}`).value
   // Realiza una solicitud a la API para iniciar sesión
 
   const data = await fetch('http://localhost:3000/api/v1/users/login', {
@@ -75,16 +75,17 @@ const Login = async () => {
       localStorage.setItem('isbanned', dataRes.user.isBanned)
       chargeSection('Logeado')
     } else {
-      document.querySelector('#msnLogin').textContent =
+      document.querySelector(`#${msgElement}`).textContent =
         'Este usuario ha sido baneado de la pagina'
-      document.querySelector('#username').value = ''
-      document.querySelector('#password').value = ''
+      document.querySelector(`#${usernameId}`).value = ''
+      document.querySelector(`#${passwordId}`).value = ''
     }
   } else {
     console.log(JSON.stringify(dataRes))
-    document.querySelector('#msnLogin').textContent = JSON.stringify(dataRes)
-    document.querySelector('#username').value = ''
-    document.querySelector('#password').value = ''
+    document.querySelector(`#${msgElement}`).textContent =
+      JSON.stringify(dataRes)
+    document.querySelector(`#${usernameId}`).value = ''
+    document.querySelector(`#${passwordId}`).value = ''
   }
 }
 

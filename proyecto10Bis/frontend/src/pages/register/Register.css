@@ -14,6 +14,7 @@
   width: 200px;
   padding: var(--rtc-padding-xs);
   border-radius: var(--rtc-border-radius-button);
+  border: var(--rtc-input-border);
 }
 
 .register button {

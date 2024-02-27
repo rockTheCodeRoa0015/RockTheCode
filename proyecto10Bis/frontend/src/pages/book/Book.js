@@ -77,6 +77,7 @@ const printBooks = (books, div) => {
 
   for (let i = 0; i < bucle; i++) {
     const article = document.createElement('article')
+    const divImg = document.createElement('div')
     const img = document.createElement('img')
     const h3 = document.createElement('h3')
 
@@ -85,7 +86,8 @@ const printBooks = (books, div) => {
     article.id = books[i]._id
 
     article.classList.add('flex-container', 'book')
-    article.appendChild(img)
+    divImg.appendChild(img)
+    article.appendChild(divImg)
     article.appendChild(h3)
     article.addEventListener('click', () => {
       chargeSection('DetalleLibro', books[i]._id)
@@ -111,6 +113,7 @@ const printAfter = () => {
 
   for (let i = page * NUMBOOKPERPAGE; i < bucle; i++) {
     const article = document.createElement('article')
+    const divImg = document.createElement('div')
     const img = document.createElement('img')
     const h3 = document.createElement('h3')
 
@@ -119,7 +122,8 @@ const printAfter = () => {
     article.id = arrBook[i]._id
 
     article.classList.add('flex-container', 'book')
-    article.appendChild(img)
+    divImg.appendChild(img)
+    article.appendChild(divImg)
     article.appendChild(h3)
     article.addEventListener('click', () => {
       chargeSection('DetalleLibro', arrBook[i]._id)
@@ -146,6 +150,7 @@ const printBefore = () => {
 
   for (let i = bucle - NUMBOOKPERPAGE; i < bucle; i++) {
     const article = document.createElement('article')
+    const divImg = document.createElement('div')
     const img = document.createElement('img')
     const h3 = document.createElement('h3')
 
@@ -154,7 +159,8 @@ const printBefore = () => {
     article.id = arrBook[i]._id
 
     article.classList.add('flex-container', 'book')
-    article.appendChild(img)
+    divImg.appendChild(img)
+    article.appendChild(divImg)
     article.appendChild(h3)
     article.addEventListener('click', () => {
       chargeSection('DetalleLibro', arrBook[i]._id)

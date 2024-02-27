@@ -1,4 +1,5 @@
 import { chargeSection } from '../hero/Hero'
+import { Login } from '../login/Login'
 import './Register.css'
 
 export const TemplateRegister = (parentNode) => {
@@ -35,7 +36,10 @@ export const TemplateRegister = (parentNode) => {
   section.classList.add('flex-container', 'register')
   form.classList.add('flex-container')
 
-  btn.addEventListener('click', () => Register())
+  btn.addEventListener('click', (e) => {
+    e.preventDefault()
+    Register()
+  })
 
   section.appendChild(h2)
   form.appendChild(inUser)
@@ -78,9 +82,10 @@ const Register = async () => {
     if (dataRes.status === 201) {
       document.querySelector('#msnRegistro').textContent = dataRes.desc
       document.querySelector('#msnRegistro').style.color = 'black'
-      setTimeout(() => {
+      /*setTimeout(() => {
         chargeSection('Libros')
-      }, 2000)
+      }, 2000)*/
+      Login('msnRegistro', 'usernameReg', 'passwordReg')
     } else {
       document.querySelector('#msnRegistro').textContent =
         'Ese nombre de usuario o email ya existe'

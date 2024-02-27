@@ -1,0 +1,8 @@
+.profileInfo > img {
+  width: 200px;
+  cursor: default;
+}
+
+.profileInfo > img:hover {
+  opacity: 1;
+}

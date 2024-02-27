@@ -4,3 +4,7 @@
   margin-top: 10svh;
   flex-direction: column;
 }
+
+#main button:disabled {
+  cursor: default;
+}

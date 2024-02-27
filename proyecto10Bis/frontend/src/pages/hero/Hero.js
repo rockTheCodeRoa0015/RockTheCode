@@ -41,6 +41,15 @@ export const chargeSection = (page, param) => {
     }
   }
 
+  if (
+    document.querySelector('.profile-show') &&
+    page !== 'Perfil' &&
+    page !== 'Logout'
+  ) {
+    const div = document.querySelector('.profile')
+    div.classList.toggle('profile-show')
+  }
+
   switch (page) {
     case 'Home':
       if (document.querySelector('.nav-show')) {

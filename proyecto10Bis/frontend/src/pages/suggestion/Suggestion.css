@@ -9,7 +9,6 @@
   flex-direction: column;
   background-color: var(--rtc-background-header);
   border: var(--rtc-primary-border);
-
   padding-bottom: var(--rtc-padding-s);
 }
 
@@ -50,6 +49,7 @@
   padding: var(--rtc-padding-xs);
   border-radius: var(--rtc-border-radius-button);
   width: 50%;
+  border: var(--rtc-input-border);
 }
 
 .synSugg > textarea {
@@ -58,6 +58,7 @@
   padding: var(--rtc-padding-xs) var(--rtc-padding-xxs);
   resize: none;
   border-radius: var(--rtc-border-radius-button);
+  border: var(--rtc-input-border);
 }
 
 .catSugg,
@@ -78,6 +79,7 @@
   padding: var(--rtc-padding-xs) var(--rtc-padding-xxs);
   resize: none;
   border-radius: var(--rtc-border-radius-button);
+  border: var(--rtc-input-border);
 }
 
 .pSugg {

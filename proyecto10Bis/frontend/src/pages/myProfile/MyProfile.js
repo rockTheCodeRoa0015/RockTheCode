@@ -31,11 +31,18 @@ export const MyProfile = (parentNode) => {
   })
     .then((res) => res.json())
     .then((profile) => {
+      const divImg = document.createElement('div')
+      const imgCam = document.createElement('img')
       const imgProfile = document.createElement('img')
       const h3Username = document.createElement('h3')
       const h4Email = document.createElement('h4')
       const inImg = document.createElement('input')
       const btnChangeImg = document.createElement('button')
+
+      imgCam.src = './img/camara.png'
+      imgCam.addEventListener('click', () => {
+        inImg.click()
+      })
 
       imgProfile.src = profile.avatar
       imgProfile.addEventListener('click', () => {
@@ -53,7 +60,9 @@ export const MyProfile = (parentNode) => {
         changeImgProfile(inImg, btnChangeImg)
       })
 
-      sectionProfile.appendChild(imgProfile)
+      divImg.appendChild(imgProfile)
+      divImg.appendChild(imgCam)
+      sectionProfile.appendChild(divImg)
       sectionProfile.appendChild(btnChangeImg)
       sectionProfile.appendChild(h3Username)
       sectionProfile.appendChild(h4Email)

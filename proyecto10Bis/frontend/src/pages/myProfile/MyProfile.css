@@ -7,10 +7,26 @@
   background-color: var(--rtc-background-header);
 }
 
-.profileInfo > img {
+.profileInfo > div {
+  position: relative;
   width: 200px;
+}
+
+.profileInfo img {
+  width: 100%;
   border-radius: var(--rtc-border-radius-max);
   cursor: pointer;
+}
+
+.profileInfo img:hover {
+  opacity: 0.8;
+}
+
+.profileInfo > div > img:last-child {
+  width: 50px;
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
 }
 
 .profileInfo > input,
@@ -96,7 +112,11 @@
 }
 
 @media (max-width: 499px) {
-  .profileInfo > img {
+  .profileInfo > div {
     width: 150px;
+  }
+
+  .profileInfo > div > img:last-child {
+    width: 40px;
   }
 }
