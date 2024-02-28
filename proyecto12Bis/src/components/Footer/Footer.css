@@ -1,0 +1,15 @@
+.footer {
+  height: 5svh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    225deg,
+    var(--rtc-background-darkBlue),
+    var(--rtc-background-lightBlue)
+  );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--rtc-primary-text);
+}

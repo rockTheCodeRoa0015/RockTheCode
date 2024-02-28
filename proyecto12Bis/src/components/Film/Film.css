@@ -1,0 +1,31 @@
+.film {
+  display: flex;
+  width: 320px;
+  height: 350px;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: var(--rtc-gap-xxs);
+  cursor: pointer;
+}
+
+.film img {
+  height: 300px;
+  width: 200px;
+  transition: all 0.5s ease-in-out;
+}
+
+.film h2 {
+  font-size: medium;
+  text-align: center;
+  color: var(--rtc-secondary-text);
+}
+
+.film > div:hover img {
+  -webkit-transform: scale(1.3);
+  transform: scale(1.3);
+}
+.film > div {
+  overflow: hidden;
+}

@@ -1,0 +1,40 @@
+.stars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--rtc-gap-xs);
+}
+
+.estrella {
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  background-color: grey;
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+}
+
+.rellena {
+  background-color: var(--rtc-color-star);
+}
+
+input[type='radio'] {
+  display: none;
+}
+
+@media (max-width: 499px) {
+  .stars {
+    flex-wrap: wrap;
+    gap: var(--rtc-gap-m);
+  }
+}

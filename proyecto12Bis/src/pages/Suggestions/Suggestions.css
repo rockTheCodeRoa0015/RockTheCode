@@ -1,0 +1,110 @@
+.suggestion {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85svh;
+  flex-direction: column;
+  gap: var(--rtc-gap-xl);
+  padding: var(--rtc-padding-s) 0;
+  position: relative;
+}
+
+.suggestion > form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: var(--rtc-gap-s);
+  padding: var(--rtc-padding-s) 0;
+  border-radius: var(--rtc-border-radius-button);
+  width: 400px;
+  background: linear-gradient(
+    225deg,
+    var(--rtc-background-darkBlue),
+    var(--rtc-background-lightBlue)
+  );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.suggestion > form > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: var(--rtc-gap-xxs);
+  width: 80%;
+}
+
+.suggestion > form > div > label,
+.suggestion > form > div > input,
+.suggestion > form > div > textarea {
+  width: 90%;
+}
+
+.suggestion button {
+  width: 50%;
+  color: var(--rtc-secondary-text);
+  padding: var(--rtc-padding-xs);
+  border-radius: var(--rtc-border-radius-button);
+  border: none;
+  cursor: pointer;
+}
+
+.suggestion h2,
+.suggestion p {
+  color: var(--rtc-secondary-text);
+}
+
+.label {
+  color: var(--rtc-primary-text);
+}
+
+.suggestion input,
+.suggestion textarea {
+  padding: var(--rtc-padding-xs);
+  border-radius: var(--rtc-border-radius-button);
+  border: none;
+}
+
+.suggestion textarea {
+  resize: none;
+  height: 100px;
+}
+
+.sug_Genre {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--rtc-gap-xs);
+  justify-content: center;
+  align-items: center;
+}
+
+.genre {
+  background-color: var(--rtc-color-lightgrey);
+  padding: var(--rtc-padding-xxs);
+  border-radius: var(--rtc-border-radius-button);
+  color: var(--rtc-secondary-text);
+  cursor: pointer;
+}
+
+.genre-rellena {
+  background-color: var(--rtc-color-star);
+  padding: var(--rtc-padding-xxs);
+  border-radius: var(--rtc-border-radius-button);
+  color: var(--rtc-secondary-text);
+  cursor: pointer;
+}
+
+.error {
+  color: var(--rtc-color-error);
+  font-weight: bold;
+}
+
+@media (max-width: 499px) {
+  .suggestion > form {
+    width: 350px;
+  }
+}

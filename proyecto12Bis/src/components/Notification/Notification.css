@@ -1,0 +1,23 @@
+.notification {
+  position: absolute;
+  width: 200px;
+  height: 50px;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    225deg,
+    var(--rtc-background-darkBlue),
+    var(--rtc-background-lightBlue)
+  );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  border: 2px solid black;
+  border-radius: var(--rtc-border-radius-button);
+}
+
+.notification > p {
+  color: var(--rtc-primary-text);
+}

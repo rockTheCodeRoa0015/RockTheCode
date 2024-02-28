@@ -1,0 +1,10 @@
+.films {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85svh;
+  flex-wrap: wrap;
+  gap: var(--rtc-gap-s);
+  padding: var(--rtc-padding-s) 0;
+}
