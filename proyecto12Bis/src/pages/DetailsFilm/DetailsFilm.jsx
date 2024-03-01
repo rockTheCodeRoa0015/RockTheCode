@@ -11,7 +11,7 @@ const DetailsFilm = ({ films, setFavourite, setRating }) => {
   const { stars, rate, hover, setRate, setHover } = useStars()
 
   const avgRate = () => {
-    const arrRate = films[parseInt(id)].rating
+    const arrRate = film.rating
     let sumRate = 0
     for (const rate of arrRate) {
       sumRate += parseInt(rate)
@@ -24,23 +24,18 @@ const DetailsFilm = ({ films, setFavourite, setRating }) => {
     if (film.valoration) {
       setRate(film.rating[film.rating.length - 1])
     }
-  }, [])
+  }, [film])
 
   const handlerFavourite = () => {
     setFavourite(film.name, film.favourite)
-    film.favourite = !film.favourite
+    setFilm({ ...film, favourite: !film.favourite })
   }
 
   const handleValoration = (val) => {
     setRate(val)
-    console.log(val)
-    setRating(film, film.name, val)
-    film.rating.push(val)
-    film.valoration = true
-    avgRate()
+    setFilm({ ...film, valoration: true, rating: [...film.rating, val] })
+    setRating(film.name, val)
   }
-
-  //console.log(film)
 
   return (
     <div className='details'>
