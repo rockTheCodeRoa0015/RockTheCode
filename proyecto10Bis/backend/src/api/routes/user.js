@@ -8,8 +8,7 @@ const {
   getUserByUsernameAndMail,
   updateUsers,
   updateUsersPass,
-  deleteUser,
-  updateUsersFavouriteBook
+  deleteUser
 } = require('../controllers/user')
 
 const usersRoutes = require('express').Router()
@@ -22,11 +21,5 @@ usersRoutes.post('/login', login)
 usersRoutes.put('/:id', [isAuth], upload.single('avatar'), updateUsers)
 usersRoutes.put('/pass/:id', upload.single('avatar'), updateUsersPass)
 usersRoutes.delete('/:id', [isAdmin], deleteUser)
-usersRoutes.put(
-  '/delFavoutieBook/:id',
-  [isAuth],
-  upload.single('avatar'),
-  updateUsersFavouriteBook
-)
 
 module.exports = usersRoutes

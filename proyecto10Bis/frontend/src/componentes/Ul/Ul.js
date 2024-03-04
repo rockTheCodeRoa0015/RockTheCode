@@ -1,5 +1,5 @@
+import { chargeSection } from '../../utils/router'
 import './Ul.css'
-import { chargeSection } from '../../pages/hero/Hero'
 
 export const Ul = (parentNode, arrayList, clase) => {
   const ul = document.createElement('ul')

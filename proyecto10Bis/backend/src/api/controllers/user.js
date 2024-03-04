@@ -6,17 +6,16 @@ const bcrypt = require('bcrypt')
 const register = async (req, res, next) => {
   try {
     const newUser = new User(req.body)
-    const usernameDuplicated = await User.findOne({
-      userName: req.body.userName
+    const { userName, email } = req.body
+
+    const duplicatedUser = await User.findOne({
+      $or: [{ userName }, { email }]
     })
 
-    const emailDuplicated = await User.findOne({
-      email: req.body.email
-    })
-
-    if (usernameDuplicated || emailDuplicated) {
+    if (duplicatedUser) {
       return res.status(400).json('Ese nombre de usuario o email ya existe')
     }
+
     if (req.file) {
       newUser.avatar = req.file.path
     }
@@ -39,9 +38,9 @@ const login = async (req, res, next) => {
     let user = ''
     if (req.body.userName !== '' && req.body.userName !== undefined) {
       user = await User.findOne({ userName: req.body.userName })
-    } else if (req.body.email !== '' && req.body.email !== undefined) {
+    } /*else if (req.body.email !== '' && req.body.email !== undefined) {
       user = await User.findOne({ email: req.body.email })
-    }
+    }*/
     if (!user) {
       return res.status(400).json('El usuario o la contraseña son incorrectos')
     }
@@ -99,13 +98,8 @@ const updateUsers = async (req, res, next) => {
     const userPreUpdate = await User.findById(id)
     const newUser = new User(req.body)
     newUser._id = id
-    newUser.favouritesBooks = [
-      ...userPreUpdate.favouritesBooks,
-      ...newUser.favouritesBooks
-    ]
     if (req.file) {
       newUser.avatar = req.file.path
-      //const userPreUpdate = await User.findById(id)
       deleteFile(userPreUpdate.avatar)
     } else {
       newUser.avatar = userPreUpdate.avatar
@@ -116,10 +110,33 @@ const updateUsers = async (req, res, next) => {
     if (req.body.isBanned === undefined) {
       newUser.isBanned = userPreUpdate.isBanned
     }
-    const updateUser = await User.findByIdAndUpdate(id, newUser, { new: true })
-    return res
-      .status(200)
-      .json({ mensaje: 'Este usuario ha sido Modificado', updateUser })
+
+    /**** */
+    if (req.body.isDelFav) {
+      let indice = userPreUpdate.favouritesBooks.indexOf(
+        req.body.favouritesBooks
+      )
+      if (indice !== -1) {
+        userPreUpdate.favouritesBooks.splice(indice, 1)
+        newUser.favouritesBooks = userPreUpdate.favouritesBooks
+        const up = await User.findByIdAndUpdate(id, newUser, { new: true })
+        return res.status(200).json({ mensaje: 'Valoración Modificada', up })
+      }
+      return res.status(200).json({ mensaje: 'Indice no encontrado' })
+    } else {
+      newUser.favouritesBooks = [
+        ...userPreUpdate.favouritesBooks,
+        ...newUser.favouritesBooks
+      ]
+
+      const updateUser = await User.findByIdAndUpdate(id, newUser, {
+        new: true
+      })
+      return res
+        .status(200)
+        .json({ mensaje: 'Este usuario ha sido Modificado', updateUser })
+    }
+    /**** */
   } catch (error) {
     return res.status(400).json('Error')
   }
@@ -170,39 +187,6 @@ const deleteUser = async (req, res, next) => {
   }
 }
 
-const updateUsersFavouriteBook = async (req, res, next) => {
-  try {
-    const { id } = req.params
-    const userPreUpdate = await User.findById(id)
-    const newUser = new User(req.body)
-    newUser._id = id
-    if (req.file) {
-      newUser.avatar = req.file.path
-      //const userPreUpdate = await User.findById(id)
-      deleteFile(userPreUpdate.avatar)
-    } else {
-      newUser.avatar = userPreUpdate.avatar
-    }
-    if (!req.body.rol) {
-      newUser.rol = userPreUpdate.rol
-    }
-    if (!req.body.isBanned) {
-      newUser.isBanned = userPreUpdate.isBanned
-    }
-
-    let indice = userPreUpdate.favouritesBooks.indexOf(req.body.favouritesBooks)
-    if (indice !== -1) {
-      userPreUpdate.favouritesBooks.splice(indice, 1)
-      newUser.favouritesBooks = userPreUpdate.favouritesBooks
-      const up = await User.findByIdAndUpdate(id, newUser, { new: true })
-      return res.status(200).json({ mensaje: 'Valoración Modificada', up })
-    }
-    return res.status(200).json({ mensaje: 'Indice no encontrado' })
-  } catch (error) {
-    return res.status(400).json('Error')
-  }
-}
-
 module.exports = {
   register,
   login,
@@ -211,6 +195,5 @@ module.exports = {
   getUserByUsernameAndMail,
   updateUsers,
   updateUsersPass,
-  deleteUser,
-  updateUsersFavouriteBook
+  deleteUser
 }

@@ -1,8 +1,16 @@
 .profileInfo > img {
   width: 200px;
+  height: 200px;
   cursor: default;
 }
 
 .profileInfo > img:hover {
   opacity: 1;
+}
+
+@media (max-width: 499px) {
+  .profileInfo > img {
+    width: 150px;
+    height: 150px;
+  }
 }

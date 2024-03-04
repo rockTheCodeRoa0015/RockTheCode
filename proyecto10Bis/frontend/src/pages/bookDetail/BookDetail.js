@@ -1,4 +1,4 @@
-import { chargeSection } from '../hero/Hero'
+import { chargeSection } from '../../utils/router'
 import './BookDetail.css'
 
 let arrOpinonDetails = []
@@ -329,8 +329,7 @@ const updateFavouriteBook = (divFav, bookid) => {
 
 const delFavoriteBook = async (bookid) => {
   const dataUp = await fetch(
-    'http://localhost:3000/api/v1/users/delFavoutieBook/' +
-      localStorage.getItem('_id'),
+    'http://localhost:3000/api/v1/users/' + localStorage.getItem('_id'),
     {
       headers: {
         'Content-Type': 'application/json',
@@ -338,7 +337,8 @@ const delFavoriteBook = async (bookid) => {
       },
       method: 'PUT',
       body: JSON.stringify({
-        favouritesBooks: bookid
+        favouritesBooks: bookid,
+        isDelFav: true
       })
     }
   )

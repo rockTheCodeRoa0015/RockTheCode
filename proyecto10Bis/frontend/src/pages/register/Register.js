@@ -1,4 +1,4 @@
-import { chargeSection } from '../hero/Hero'
+import { validateEmail } from '../../utils/validateEmail'
 import { Login } from '../login/Login'
 import './Register.css'
 
@@ -82,9 +82,6 @@ const Register = async () => {
     if (dataRes.status === 201) {
       document.querySelector('#msnRegistro').textContent = dataRes.desc
       document.querySelector('#msnRegistro').style.color = 'black'
-      /*setTimeout(() => {
-        chargeSection('Libros')
-      }, 2000)*/
       Login('msnRegistro', 'usernameReg', 'passwordReg')
     } else {
       document.querySelector('#msnRegistro').textContent =
@@ -93,16 +90,5 @@ const Register = async () => {
   } else {
     document.querySelector('#msnRegistro').textContent =
       'Las contraseñas no son iguales'
-  }
-}
-
-function validateEmail(email) {
-  var validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/
-
-  // Using test we can check if the text match the pattern
-  if (validEmail.test(email)) {
-    return true
-  } else {
-    return false
   }
 }

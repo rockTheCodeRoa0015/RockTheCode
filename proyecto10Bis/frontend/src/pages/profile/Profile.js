@@ -1,4 +1,4 @@
-import { chargeSection } from '../hero/Hero'
+import { chargeSection } from '../../utils/router'
 import './Profile.css'
 
 let arrOpinonProfile = []
