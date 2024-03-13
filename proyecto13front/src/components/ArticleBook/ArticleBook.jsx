@@ -5,8 +5,11 @@ import Image from '../Image/Image'
 import Paragraph from '../Paragraph/Paragraph'
 import SubTitle from '../SubTitle/SubTitle'
 import StyledArticleBook from './ArticleBook.style'
+import { useContext } from 'react'
+import { LoginContext } from '../../provider/LoginProvider'
 
 const ArticleBook = ({ Book }) => {
+  const { isLogin } = useContext(LoginContext)
   return (
     <StyledArticleBook>
       <Image src={Book.cover} alt={Book.title} h={'300px'} w={'200px'}></Image>
@@ -25,7 +28,11 @@ const ArticleBook = ({ Book }) => {
           index={'99'}
           bg={'var(--rtc-color-white)'}
         >
-          <Button bg={'var(--rtc-color-add)'} disable={Book.stock}>
+          <Button
+            bg={'var(--rtc-color-add)'}
+            disable={isLogin === false || Book.stock === 0 ? true : false}
+            action={'add'}
+          >
             Añadir
           </Button>
           <Link to={`/bookDetail/${Book._id}`}>

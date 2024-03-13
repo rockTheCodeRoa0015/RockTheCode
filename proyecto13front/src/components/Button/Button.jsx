@@ -2,11 +2,11 @@ import { useContext } from 'react'
 import StyledButton from './Button.style'
 import { NumCartContext } from '../../provider/NumCartProvider'
 
-const Button = ({ children, bg, disable, type }) => {
+const Button = ({ children, bg, disable, type, action }) => {
   const { addCart } = useContext(NumCartContext)
 
   const btnFunc = () => {
-    if (disable) {
+    if (action === 'add') {
       addCart()
     }
   }
@@ -15,7 +15,7 @@ const Button = ({ children, bg, disable, type }) => {
     <StyledButton
       bg={bg}
       onClick={btnFunc}
-      disabled={disable === 0 ? true : false}
+      disabled={disable}
       type={type ? type : 'button'}
     >
       {children}

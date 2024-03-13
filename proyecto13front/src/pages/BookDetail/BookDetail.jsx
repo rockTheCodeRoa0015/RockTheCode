@@ -1,17 +1,19 @@
 import { useParams } from 'react-router-dom'
 import StyledBookDetail from './BookDetail.style'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import CustomDiv from '../../components/CustomDiv/CustomDiv'
 import Image from '../../components/Image/Image'
 import SubTitle from '../../components/SubTitle/SubTitle'
 import Paragraph from '../../components/Paragraph/Paragraph'
 import Button from '../../components/Button/Button'
 import { getBookDetails } from '../../api/bookDetailApi'
+import { LoginContext } from '../../provider/LoginProvider'
 
 const BookDetail = () => {
   const { id } = useParams()
   const [book, setBook] = useState()
   const [categorie, setCategorie] = useState()
+  const { isLogin } = useContext(LoginContext)
 
   useEffect(() => {
     getBookDetails(id, setBook, setCategorie)
@@ -63,7 +65,11 @@ const BookDetail = () => {
             >
               stock
             </Paragraph>
-            <Button bg={'var(--rtc-color-add)'} disable={book.stock}>
+            <Button
+              bg={'var(--rtc-color-add)'}
+              disable={isLogin === false || book.stock === 0 ? true : false}
+              action={'add'}
+            >
               Añadir cesta
             </Button>
           </CustomDiv>
