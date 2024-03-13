@@ -1,10 +1,10 @@
 import { useContext } from 'react'
 import StyledNumCart from './NumCart.style'
-import { numCartContext } from '../../App'
+import { NumCartContext } from '../../provider/NumCartProvider'
 
 const NumCart = () => {
-  const num = useContext(numCartContext)
-  return <StyledNumCart>{num}</StyledNumCart>
+  const { numCart } = useContext(NumCartContext)
+  return <StyledNumCart>{numCart}</StyledNumCart>
 }
 
 export default NumCart

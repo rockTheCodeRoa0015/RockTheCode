@@ -6,7 +6,7 @@ import Paragraph from '../Paragraph/Paragraph'
 import SubTitle from '../SubTitle/SubTitle'
 import StyledArticleBook from './ArticleBook.style'
 
-const ArticleBook = ({ Book, numCart, setNumCart }) => {
+const ArticleBook = ({ Book }) => {
   return (
     <StyledArticleBook>
       <Image src={Book.cover} alt={Book.title} h={'300px'} w={'200px'}></Image>
@@ -25,12 +25,7 @@ const ArticleBook = ({ Book, numCart, setNumCart }) => {
           index={'99'}
           bg={'var(--rtc-color-white)'}
         >
-          <Button
-            bg={'var(--rtc-color-add)'}
-            numCart={numCart}
-            setNumCart={setNumCart}
-            disable={Book.stock}
-          >
+          <Button bg={'var(--rtc-color-add)'} disable={Book.stock}>
             Añadir
           </Button>
           <Link to={`/bookDetail/${Book._id}`}>

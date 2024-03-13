@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
-import { delCart, pushCart } from '../../utils/setCartItems'
 import StyledHome from './Home.style'
 import ArticleBook from '../../components/ArticleBook/ArticleBook'
 import CustomDiv from '../../components/CustomDiv/CustomDiv'
 import Title from '../../components/Title/Title'
 import { getLastAdd, getTopSales } from '../../api/homeApi'
 
-const Home = ({ numCart, setNumCart }) => {
+const Home = () => {
   const [topBooks, setTopBooks] = useState()
   const [lastAddBooks, setLastAddBooks] = useState()
 
@@ -21,24 +20,14 @@ const Home = ({ numCart, setNumCart }) => {
       <CustomDiv wrap={'wrap'}>
         {topBooks &&
           topBooks.map((book, index) => (
-            <ArticleBook
-              key={index}
-              Book={book}
-              numCart={numCart}
-              setNumCart={setNumCart}
-            ></ArticleBook>
+            <ArticleBook key={index} Book={book}></ArticleBook>
           ))}
       </CustomDiv>
       <Title>Últimos añadidos</Title>
       <CustomDiv wrap={'wrap'}>
         {lastAddBooks &&
           lastAddBooks.map((book) => (
-            <ArticleBook
-              key={book._id}
-              Book={book}
-              numCart={numCart}
-              setNumCart={setNumCart}
-            ></ArticleBook>
+            <ArticleBook key={book._id} Book={book}></ArticleBook>
           ))}
       </CustomDiv>
     </StyledHome>

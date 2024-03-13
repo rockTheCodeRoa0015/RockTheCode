@@ -8,7 +8,7 @@ import Paragraph from '../../components/Paragraph/Paragraph'
 import Button from '../../components/Button/Button'
 import { getBookDetails } from '../../api/bookDetailApi'
 
-const BookDetail = ({ numCart, setNumCart }) => {
+const BookDetail = () => {
   const { id } = useParams()
   const [book, setBook] = useState()
   const [categorie, setCategorie] = useState()
@@ -63,12 +63,7 @@ const BookDetail = ({ numCart, setNumCart }) => {
             >
               stock
             </Paragraph>
-            <Button
-              bg={'var(--rtc-color-add)'}
-              numCart={numCart}
-              setNumCart={setNumCart}
-              disable={book.stock}
-            >
+            <Button bg={'var(--rtc-color-add)'} disable={book.stock}>
               Añadir cesta
             </Button>
           </CustomDiv>

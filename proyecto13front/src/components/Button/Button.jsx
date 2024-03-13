@@ -1,17 +1,20 @@
-import { pushCart } from '../../utils/setCartItems'
+import { useContext } from 'react'
 import StyledButton from './Button.style'
+import { NumCartContext } from '../../provider/NumCartProvider'
 
-const Button = ({ children, bg, numCart, setNumCart, disable, type }) => {
-  const addCart = () => {
-    if (numCart !== undefined) {
-      pushCart(numCart, setNumCart)
+const Button = ({ children, bg, disable, type }) => {
+  const { addCart } = useContext(NumCartContext)
+
+  const btnFunc = () => {
+    if (disable) {
+      addCart()
     }
   }
 
   return (
     <StyledButton
       bg={bg}
-      onClick={addCart}
+      onClick={btnFunc}
       disabled={disable === 0 ? true : false}
       type={type ? type : 'button'}
     >
