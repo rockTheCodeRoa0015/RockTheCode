@@ -36,6 +36,7 @@ a {
   --rtc-background-greenHover: rgb(12, 117, 21);
   --rtc-color-add: rgb(239, 185, 50);
   --rtc-color-add-hover: rgb(243, 201, 96);
+  --rtcbackground--form: rgb(55, 150, 63);
 
   /* TEXT-COLORS */
   --rtc-primary-text: var(--rtc-color-white);
