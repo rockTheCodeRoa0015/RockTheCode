@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const StyledNavBarDiv = styled.div`
+const StyledDivMenuList = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -13,4 +13,4 @@ const StyledNavBarDiv = styled.div`
   transition: all 0.5s ease-out;
 `
 
-export default StyledNavBarDiv
+export default StyledDivMenuList

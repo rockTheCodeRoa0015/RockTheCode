@@ -1,10 +1,10 @@
+import Ul from '../Ul/Ul'
 import StyledNav from './Nav.style'
-import NavUl from './NavUl'
 
-const Nav = () => {
+const Nav = ({ action, w, padding }) => {
   return (
-    <StyledNav>
-      <NavUl></NavUl>
+    <StyledNav w={w} padding={padding}>
+      <Ul action={action}></Ul>
     </StyledNav>
   )
 }

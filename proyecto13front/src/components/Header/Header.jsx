@@ -1,12 +1,16 @@
+import { useContext } from 'react'
+import { LoginContext } from '../../provider/LoginProvider'
 import Cart from '../Cart/Cart'
 import CustomDiv from '../CustomDiv/CustomDiv'
 import Logo from '../Logo/Logo'
 import Nav from '../Nav/Nav'
-import Profile from '../Profile/Profile'
 import Search from '../Search/Search'
 import StyledHeader from './Header.style'
+import MyCount from '../MyCount/MyCount'
+import ButtonLogin from '../ButtonLogin/ButtonLogin'
 
 const Header = () => {
+  const { isLogin } = useContext(LoginContext)
   return (
     <StyledHeader>
       <CustomDiv w={'1100px'}>
@@ -17,14 +21,14 @@ const Header = () => {
           <Search></Search>
         </CustomDiv>
         <CustomDiv w={'10%'}>
-          <Profile></Profile>
+          {isLogin ? <MyCount></MyCount> : <ButtonLogin></ButtonLogin>}
         </CustomDiv>
         <CustomDiv w={'10%'}>
           <Cart></Cart>
         </CustomDiv>
       </CustomDiv>
       <CustomDiv>
-        <Nav></Nav>
+        <Nav padding={'var(--rtc-padding-xxs);'}></Nav>
       </CustomDiv>
     </StyledHeader>
   )

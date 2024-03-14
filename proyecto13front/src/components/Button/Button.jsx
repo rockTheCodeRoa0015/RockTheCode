@@ -1,20 +1,15 @@
 import { useContext } from 'react'
 import StyledButton from './Button.style'
 import { NumCartContext } from '../../provider/NumCartProvider'
+import { functionButtons } from '../../utils/functionButtons'
 
 const Button = ({ children, bg, disable, type, action }) => {
   const { addCart } = useContext(NumCartContext)
 
-  const btnFunc = () => {
-    if (action === 'add') {
-      addCart()
-    }
-  }
-
   return (
     <StyledButton
       bg={bg}
-      onClick={btnFunc}
+      onClick={() => functionButtons(action, addCart)}
       disabled={disable}
       type={type ? type : 'button'}
     >

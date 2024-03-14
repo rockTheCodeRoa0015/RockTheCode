@@ -6,7 +6,6 @@ const StyledMuyCount = styled.p`
   border-radius: var(--rtc-border-radius-button);
   border: none;
   color: var(--rtc-color-white);
-  text-decoration: none;
   text-align: center;
   font-size: large;
   font-weight: bold;
