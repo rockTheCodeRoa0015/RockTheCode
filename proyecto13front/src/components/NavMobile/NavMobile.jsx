@@ -1,10 +1,10 @@
 import StyledNavMobile from './NavMobile.style'
 import NavUlMobile from './NavUlMobile'
 
-const NavMobile = ({ toggle, setToggle }) => {
+const NavMobile = () => {
   return (
     <StyledNavMobile>
-      <NavUlMobile toggle={toggle} setToggle={setToggle}></NavUlMobile>
+      <NavUlMobile></NavUlMobile>
     </StyledNavMobile>
   )
 }

@@ -1,12 +1,14 @@
-import { toggleMenu } from '../../utils/toggleMenu'
+import { useContext } from 'react'
 import StyledMenu from './Menu.style'
+import { ToggleMenuContext } from '../../provider/ToggleMenuProvider'
 
-const Menu = ({ toggle, setToggle }) => {
+const Menu = () => {
+  const { toggle, setToggle } = useContext(ToggleMenuContext)
   return (
     <StyledMenu
       src='../assets/menu2.png'
       alt='menu'
-      onClick={() => toggleMenu(toggle, setToggle)}
+      onClick={() => setToggle(!toggle)}
     ></StyledMenu>
   )
 }

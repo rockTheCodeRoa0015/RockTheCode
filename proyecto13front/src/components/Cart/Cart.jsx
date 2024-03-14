@@ -1,17 +1,18 @@
 import { NavLink } from 'react-router-dom'
 import StyledCart from './Cart.style'
 import NumCart from './NumCart'
-import { toggleMenuClose } from '../../utils/toggleMenu'
 import { useContext } from 'react'
 import { LoginContext } from '../../provider/LoginProvider'
+import { ToggleMenuContext } from '../../provider/ToggleMenuProvider'
 
-const Cart = ({ setToggle }) => {
+const Cart = () => {
   const { isLogin } = useContext(LoginContext)
+  const { setToggle } = useContext(ToggleMenuContext)
   return (
     <>
       <NavLink to={isLogin ? '/basket' : '/login'}>
         <StyledCart
-          onClick={() => toggleMenuClose(setToggle)}
+          onClick={() => setToggle(false)}
           src='../assets/cart.png'
           alt='cesta'
         />

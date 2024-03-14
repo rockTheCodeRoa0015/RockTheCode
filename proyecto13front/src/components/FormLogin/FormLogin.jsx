@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import StyledFormLogin from './FormLogin.style'
 import { useForm } from 'react-hook-form'
 import CustomDiv from '../CustomDiv/CustomDiv'
@@ -7,6 +7,7 @@ import Paragraph from '../Paragraph/Paragraph'
 import { login } from '../../api/userApi'
 import { useNavigate } from 'react-router-dom'
 import { LoginContext } from '../../provider/LoginProvider'
+import useCustomError from '../../customHooks/useCustomError'
 
 const FormLogin = () => {
   const { register, handleSubmit, formState } = useForm({
@@ -16,7 +17,7 @@ const FormLogin = () => {
     }
   })
 
-  const [error, setError] = useState()
+  const { error, setError } = useCustomError()
 
   const { logoned } = useContext(LoginContext)
 
@@ -50,13 +51,20 @@ const FormLogin = () => {
         ></input>
         {formState.errors.userNameLogin ? (
           <CustomDiv>
-            <Paragraph>{formState.errors.userNameLogin.message}</Paragraph>
+            <Paragraph
+              color={'var(--rtc-color-error)'}
+              fontweight={'bold'}
+              textalign={'center'}
+              textshadow={'var(--rtc-textShadow)'}
+            >
+              {formState.errors.userNameLogin.message}
+            </Paragraph>
           </CustomDiv>
         ) : null}
       </CustomDiv>
       <CustomDiv dir={'column'} w={'100%'} gap={'var(--rtc-gap-xs)'}>
         <input
-          id='text'
+          id='passLogin'
           placeholder='Contraseña'
           type='password'
           {...register('passLogin', {
@@ -68,16 +76,30 @@ const FormLogin = () => {
         ></input>
         {formState.errors.passLogin ? (
           <CustomDiv>
-            <Paragraph>{formState.errors.passLogin.message}</Paragraph>
+            <Paragraph
+              color={'var(--rtc-color-error)'}
+              fontweight={'bold'}
+              textalign={'center'}
+              textshadow={'var(--rtc-textShadow)'}
+            >
+              {formState.errors.passLogin.message}
+            </Paragraph>
           </CustomDiv>
         ) : null}
       </CustomDiv>
       {error ? (
         <CustomDiv>
-          <Paragraph>{error}</Paragraph>
+          <Paragraph
+            color={'var(--rtc-color-error)'}
+            fontweight={'bold'}
+            textalign={'center'}
+            textshadow={'var(--rtc-textShadow)'}
+          >
+            {error}
+          </Paragraph>
         </CustomDiv>
       ) : null}
-      <Button type={'submit'}>Registrar</Button>
+      <Button type={'submit'}>Iniciar</Button>
     </StyledFormLogin>
   )
 }

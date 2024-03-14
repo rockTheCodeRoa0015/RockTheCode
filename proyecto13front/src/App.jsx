@@ -10,14 +10,19 @@ import BookDetail from './pages/BookDetail/BookDetail'
 import Login from './pages/Login/Login'
 import LoginProvider from './provider/LoginProvider'
 import NumCartProvider from './provider/NumCartProvider'
+import ToggleMenuProvider from './provider/ToggleMenuProvider'
+import Register from './pages/Register/Register'
+import RenewPass from './pages/RenewPass/RenewPass'
 
 const App = () => {
   return (
     <>
       <LoginProvider>
         <NumCartProvider>
-          <Header />
-          <HeaderMobile />
+          <ToggleMenuProvider>
+            <Header />
+            <HeaderMobile />
+          </ToggleMenuProvider>
           <Routes>
             <Route path='/' element={<Home />}></Route>
             <Route path='/books/:id' element={<Books />}></Route>
@@ -25,6 +30,8 @@ const App = () => {
             <Route path='/profile' element={<Profile />}></Route>
             <Route path='/basket' element={<Basket />}></Route>
             <Route path='/login' element={<Login />}></Route>
+            <Route path='/register' element={<Register />}></Route>
+            <Route path='/renewPass' element={<RenewPass />}></Route>
             <Route path='/*' element={<Home />}></Route>
           </Routes>
         </NumCartProvider>

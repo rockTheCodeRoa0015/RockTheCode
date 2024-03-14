@@ -15,6 +15,7 @@ const StyledCustomDiv = styled.div`
   background-color: ${(props) => props.bg || 'transparent'};
   flex-wrap: ${(props) => props.wrap || 'nowrap'};
   border-radius: ${(props) => props.br || 'none'};
+  padding: ${(props) => props.padding || '0'};
 `
 
 export default StyledCustomDiv

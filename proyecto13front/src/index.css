@@ -45,6 +45,10 @@ a {
   /* BORDER-COLORS */
   --rtc-primary-border: 3px ridge var(--rtc-color-border);
 
+  /* TEXT SHADOW*/
+  --rtc-textShadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff,
+    1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+
   /* BORDER RADIUS */
   --rtc-border-radius-max: 100%;
   --rtc-border-radius-min: 30px;

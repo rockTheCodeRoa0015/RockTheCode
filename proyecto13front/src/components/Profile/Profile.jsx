@@ -3,17 +3,9 @@ import ButtonLogin from './ButtonLogin'
 import MyCount from './MyCount'
 import { LoginContext } from '../../provider/LoginProvider'
 
-const Profile = ({ setToggle }) => {
+const Profile = () => {
   const { isLogin } = useContext(LoginContext)
-  return (
-    <>
-      {isLogin ? (
-        <MyCount setToggle={setToggle}></MyCount>
-      ) : (
-        <ButtonLogin setToggle={setToggle}></ButtonLogin>
-      )}
-    </>
-  )
+  return <>{isLogin ? <MyCount></MyCount> : <ButtonLogin></ButtonLogin>}</>
 }
 
 export default Profile

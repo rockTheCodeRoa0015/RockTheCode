@@ -1,11 +1,13 @@
 import { NavLink } from 'react-router-dom'
 import StyledMuyCount from './MyCount.style'
-import { toggleMenuClose } from '../../utils/toggleMenu'
+import { useContext } from 'react'
+import { ToggleMenuContext } from '../../provider/ToggleMenuProvider'
 
-const MyCount = ({ setToggle }) => {
+const MyCount = () => {
+  const { setToggle } = useContext(ToggleMenuContext)
   return (
     <NavLink to='/profile'>
-      <StyledMuyCount href='#' onClick={() => toggleMenuClose(setToggle)}>
+      <StyledMuyCount onClick={() => setToggle(false)}>
         Mi Cuenta
       </StyledMuyCount>
     </NavLink>

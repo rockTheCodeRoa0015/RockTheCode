@@ -1,14 +1,15 @@
 import { NavLink } from 'react-router-dom'
 import StyledNavLiMobile from './NavLiMobile.style'
-import { toggleMenuClose } from '../../utils/toggleMenu'
+import { useContext } from 'react'
+import { ToggleMenuContext } from '../../provider/ToggleMenuProvider'
 
-const NavLiMobile = ({ children, link, toggle, setToggle }) => {
+const NavLiMobile = ({ children, link }) => {
+  const { toggle, setToggle } = useContext(ToggleMenuContext)
   return (
-    <StyledNavLiMobile
-      onClick={() => toggleMenuClose(setToggle)}
-      toggle={toggle}
-    >
-      <NavLink to={link}>{children}</NavLink>
+    <StyledNavLiMobile toggle={toggle ? 'open' : 'close'}>
+      <NavLink to={link} onClick={() => setToggle(false)}>
+        {children}
+      </NavLink>
     </StyledNavLiMobile>
   )
 }

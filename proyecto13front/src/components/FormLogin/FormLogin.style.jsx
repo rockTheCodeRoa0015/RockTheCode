@@ -14,13 +14,6 @@ const StyledFormLogin = styled.form`
     border-radius: var(--rtc-border-radius-button);
     border: none;
   }
-  p {
-    color: var(--rtc-color-error);
-    font-weight: bold;
-    text-align: center;
-    text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff, 1px 1px #fff,
-      -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
-  }
 `
 
 export default StyledFormLogin

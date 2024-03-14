@@ -5,7 +5,7 @@ const StyledNavBarDiv = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: ${(props) => (props.toggle === 'close' ? '0px' : '50%')};
+  width: ${(props) => (props.toggle === 'close' ? '0px' : '250px')};
   position: absolute;
   left: 0;
   top: 10svh;
