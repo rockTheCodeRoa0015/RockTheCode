@@ -7,6 +7,7 @@ import SubTitle from '../SubTitle/SubTitle'
 import StyledArticleBook from './ArticleBook.style'
 import { useContext } from 'react'
 import { LoginContext } from '../../provider/LoginProvider'
+import ButtonCart from '../ButtonCart/ButtonCart'
 
 const ArticleBook = ({ Book }) => {
   const { isLogin } = useContext(LoginContext)
@@ -28,13 +29,13 @@ const ArticleBook = ({ Book }) => {
           index={'99'}
           bg={'var(--rtc-color-white)'}
         >
-          <Button
-            bg={'var(--rtc-color-add)'}
+          <ButtonCart
             disable={isLogin === false || Book.stock === 0 ? true : false}
-            action={'add'}
+            Book={Book}
+            num={1}
           >
             Añadir
-          </Button>
+          </ButtonCart>
           <Link to={`/bookDetail/${Book._id}`}>
             <Button>Detalles</Button>
           </Link>

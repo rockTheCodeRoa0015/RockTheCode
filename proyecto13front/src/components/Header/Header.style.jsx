@@ -6,7 +6,7 @@ const StyledHeader = styled.header`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 10svh;
+  height: 90px;
   position: fixed;
   top: 0;
   left: 0;

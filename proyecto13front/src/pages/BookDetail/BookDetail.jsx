@@ -5,15 +5,25 @@ import CustomDiv from '../../components/CustomDiv/CustomDiv'
 import Image from '../../components/Image/Image'
 import SubTitle from '../../components/SubTitle/SubTitle'
 import Paragraph from '../../components/Paragraph/Paragraph'
-import Button from '../../components/Button/Button'
 import { getBookDetails } from '../../api/bookDetailApi'
 import { LoginContext } from '../../provider/LoginProvider'
+import ButtonCart from '../../components/ButtonCart/ButtonCart'
+import ButtonTotal from '../../components/ButtonTotal/ButtonTotal'
 
 const BookDetail = () => {
   const { id } = useParams()
   const [book, setBook] = useState()
   const [categorie, setCategorie] = useState()
+  const [num, setNum] = useState(1)
   const { isLogin } = useContext(LoginContext)
+
+  const sumNum = () => {
+    setNum(num + 1)
+  }
+
+  const substractNum = () => {
+    if (num > 1) setNum(num - 1)
+  }
 
   useEffect(() => {
     getBookDetails(id, setBook, setCategorie)
@@ -65,13 +75,18 @@ const BookDetail = () => {
             >
               stock
             </Paragraph>
-            <Button
-              bg={'var(--rtc-color-add)'}
+            <ButtonCart
               disable={isLogin === false || book.stock === 0 ? true : false}
-              action={'add'}
+              Book={book}
+              num={num}
             >
               Añadir cesta
-            </Button>
+            </ButtonCart>
+            <CustomDiv dir={'row'} w={'auto'} gap={'var(--rtc-gap-xs)'}>
+              <ButtonTotal func={substractNum}>-</ButtonTotal>
+              <Paragraph>{num}</Paragraph>
+              <ButtonTotal func={sumNum}>+</ButtonTotal>
+            </CustomDiv>
           </CustomDiv>
         </>
       )}

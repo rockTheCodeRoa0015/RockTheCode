@@ -5,15 +5,17 @@ export const NumCartContext = createContext()
 const NumCartProvider = ({ children }) => {
   const [numCart, setNumCart] = useState(0)
 
-  const addCart = () => {
-    setNumCart(numCart + 1)
+  const addCart = (num) => {
+    setNumCart(numCart + num)
   }
 
   const removeCart = () => {
     setNumCart(numCart - 1)
   }
   return (
-    <NumCartContext.Provider value={{ numCart, addCart, removeCart }}>
+    <NumCartContext.Provider
+      value={{ numCart, addCart, removeCart, setNumCart }}
+    >
       {children}
     </NumCartContext.Provider>
   )

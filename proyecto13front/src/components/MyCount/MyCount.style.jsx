@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { mobile } from '../../constants/mediasqueries'
 
 const StyledMuyCount = styled.p`
   padding: var(--rtc-padding-xs) var(--rtc-padding-xxs);
@@ -9,8 +10,12 @@ const StyledMuyCount = styled.p`
   text-align: center;
   font-size: large;
   font-weight: bold;
+  cursor: pointer;
   &:hover {
     background-color: var(--rtc-background-greenHover);
+  }
+  ${mobile} {
+    font-size: 15px;
   }
 `
 

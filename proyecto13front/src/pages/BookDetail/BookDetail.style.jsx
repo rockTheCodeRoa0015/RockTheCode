@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { mobile, tablet } from '../../constants/mediasqueries'
 
 const StyledBookDetail = styled.section`
-  margin-top: 15svh;
+  margin-top: 140px;
   display: flex;
   justify-content: center;
   align-items: flex-start;

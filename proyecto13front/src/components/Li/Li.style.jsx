@@ -10,12 +10,12 @@ const StyledLi = styled.li`
     background-color: var(--rtc-background-greenHover);
     border-radius: var(--rtc-border-radius-button);
   }
-  ${tablet} {
+  /*${tablet} {
     visibility: ${(props) => (props.toggle === 'close' ? 'hidden' : 'visible')};
   }
   ${mobile} {
     visibility: ${(props) => (props.toggle === 'close' ? 'hidden' : 'visible')};
-  }
+  }*/
 `
 
 export default StyledLi

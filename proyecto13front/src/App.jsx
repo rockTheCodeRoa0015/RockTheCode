@@ -13,6 +13,7 @@ import NumCartProvider from './provider/NumCartProvider'
 import ToggleMenuProvider from './provider/ToggleMenuProvider'
 import Register from './pages/Register/Register'
 import RenewPass from './pages/RenewPass/RenewPass'
+import ToggleProfileProvider from './provider/ToggleProfileProvider'
 
 const App = () => {
   return (
@@ -20,8 +21,10 @@ const App = () => {
       <LoginProvider>
         <NumCartProvider>
           <ToggleMenuProvider>
-            <Header />
-            <HeaderMobile />
+            <ToggleProfileProvider>
+              <Header />
+              <HeaderMobile />
+            </ToggleProfileProvider>
           </ToggleMenuProvider>
           <Routes>
             <Route path='/' element={<Home />}></Route>

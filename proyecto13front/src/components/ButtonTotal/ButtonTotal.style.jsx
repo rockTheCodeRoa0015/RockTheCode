@@ -1,11 +1,12 @@
 import styled from 'styled-components'
 
-const StyledButton = styled.button`
-  width: 150px;
+const StyledButtonTotal = styled.button`
+  width: 40px;
+  height: 40px;
+  font-size: 25px;
   border-radius: var(--rtc-border-radius-button);
   border: none;
   background-color: var(--rtc-background-green);
-  padding: var(--rtc-padding-xs) 0;
   cursor: pointer;
   color: var(--rtc-color-white);
   &:hover {
@@ -13,4 +14,4 @@ const StyledButton = styled.button`
   }
 `
 
-export default StyledButton
+export default StyledButtonTotal

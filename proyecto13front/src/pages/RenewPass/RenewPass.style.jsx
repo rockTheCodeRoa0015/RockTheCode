@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const StyledRenewPass = styled.section`
-  margin-top: 15svh;
+  margin-top: 140px;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -10,6 +10,7 @@ import { LoginContext } from '../../provider/LoginProvider'
 import { useContext } from 'react'
 import DivMenuList from '../DivMenuList/DivMenuList'
 import Nav from '../Nav/Nav'
+import { ListNavHeaderMobile } from '../../constants/dataListNav'
 
 const HeaderMobile = () => {
   const { isLogin } = useContext(LoginContext)
@@ -22,10 +23,16 @@ const HeaderMobile = () => {
         <CustomDiv w={'40%'}>
           <Logo></Logo>
         </CustomDiv>
-        <CustomDiv w={'20%'}>
-          {isLogin ? <MyCount></MyCount> : <ButtonLogin></ButtonLogin>}
-        </CustomDiv>
         <CustomDiv w={'30%'}>
+          {isLogin ? (
+            <CustomDiv w={'100%'} pos={'relative'}>
+              <MyCount></MyCount>
+            </CustomDiv>
+          ) : (
+            <ButtonLogin></ButtonLogin>
+          )}
+        </CustomDiv>
+        <CustomDiv w={'20%'}>
           <Cart></Cart>
         </CustomDiv>
       </CustomDiv>
@@ -33,7 +40,7 @@ const HeaderMobile = () => {
         <Search></Search>
       </CustomDiv>
       <DivMenuList>
-        <Nav action={'menu'} w={'100%'}></Nav>
+        <Nav list={ListNavHeaderMobile} w={'100%'}></Nav>
       </DivMenuList>
     </StyledHeaderMobile>
   )

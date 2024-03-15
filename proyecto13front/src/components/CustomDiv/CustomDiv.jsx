@@ -16,7 +16,8 @@ const CustomDiv = ({
   bg,
   wrap,
   br,
-  padding
+  padding,
+  border
 }) => {
   return (
     <StyledCustomDiv
@@ -35,6 +36,7 @@ const CustomDiv = ({
       wrap={wrap}
       br={br}
       padding={padding}
+      border={border}
     >
       {children}
     </StyledCustomDiv>

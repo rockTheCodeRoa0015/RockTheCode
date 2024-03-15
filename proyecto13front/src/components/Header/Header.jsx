@@ -8,6 +8,7 @@ import Search from '../Search/Search'
 import StyledHeader from './Header.style'
 import MyCount from '../MyCount/MyCount'
 import ButtonLogin from '../ButtonLogin/ButtonLogin'
+import { ListNavHeader } from '../../constants/dataListNav'
 
 const Header = () => {
   const { isLogin } = useContext(LoginContext)
@@ -21,14 +22,20 @@ const Header = () => {
           <Search></Search>
         </CustomDiv>
         <CustomDiv w={'10%'}>
-          {isLogin ? <MyCount></MyCount> : <ButtonLogin></ButtonLogin>}
+          {isLogin ? (
+            <CustomDiv w={'100%'} pos={'relative'}>
+              <MyCount></MyCount>
+            </CustomDiv>
+          ) : (
+            <ButtonLogin></ButtonLogin>
+          )}
         </CustomDiv>
         <CustomDiv w={'10%'}>
           <Cart></Cart>
         </CustomDiv>
       </CustomDiv>
       <CustomDiv>
-        <Nav padding={'var(--rtc-padding-xxs);'}></Nav>
+        <Nav list={ListNavHeader} padding={'var(--rtc-padding-xxs);'}></Nav>
       </CustomDiv>
     </StyledHeader>
   )
