@@ -2,28 +2,25 @@ import { useEffect, useState } from 'react'
 import './Top.css'
 import { Link } from 'react-router-dom'
 import Paginator from '../../components/Paginator/Paginator'
+import usePaginator from '../../customHook/usePaginator'
 
 const LIMITTOP = 12
 
 const Top = () => {
   const [animesTop, setAnimesTop] = useState([])
-  const [pageTop, setpageTop] = useState(1)
-  const [lastPageTop, setLastPageTop] = useState(1)
+  const { page, setPage, lastPage, setLastPage } = usePaginator()
 
   useEffect(() => {
     fetch(
-      'https://api.jikan.moe/v4/top/anime?limit=' +
-        LIMITTOP +
-        '&page=' +
-        pageTop
+      'https://api.jikan.moe/v4/top/anime?limit=' + LIMITTOP + '&page=' + page
     )
       .then((res) => res.json())
       .then((res) => {
         console.log(res.data)
-        setLastPageTop(res.pagination.last_visible_page)
+        setLastPage(res.pagination.last_visible_page)
         setAnimesTop(res.data)
       })
-  }, [pageTop])
+  }, [page])
 
   return (
     <div className='flex-container top'>
@@ -37,11 +34,7 @@ const Top = () => {
           </Link>
         ))}
       </div>
-      <Paginator
-        setFunc={setpageTop}
-        page={pageTop}
-        limit={lastPageTop}
-      ></Paginator>
+      <Paginator setFunc={setPage} page={page} limit={lastPage}></Paginator>
     </div>
   )
 }

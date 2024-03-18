@@ -50,6 +50,7 @@
     left: 0;
     top: 10svh;
     display: flex;
+    z-index: 99;
   }
 
   .navHeader > ul {

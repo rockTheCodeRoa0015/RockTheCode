@@ -2,14 +2,14 @@ import './AnimesSearch.css'
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Paginator from '../../components/Paginator/Paginator'
+import usePaginator from '../../customHook/usePaginator'
 
 const LIMITSEARCH = 12
 
 const AnimesSearch = () => {
   const { search } = useParams()
   const [animesSearch, setAnimesSearch] = useState([])
-  const [pageSearch, setpageSearch] = useState(1)
-  const [lastPageSearch, setLastPageSearch] = useState(1)
+  const { page, setPage, lastPage, setLastPage } = usePaginator()
 
   useEffect(() => {
     fetch(
@@ -18,34 +18,34 @@ const AnimesSearch = () => {
         '&limit=' +
         LIMITSEARCH +
         '&page=' +
-        pageSearch
+        page
     )
       .then((res) => res.json())
       .then((res) => {
         console.log(res.data)
-        setLastPageSearch(res.pagination.last_visible_page)
+        setLastPage(res.pagination.last_visible_page)
         setAnimesSearch(res.data)
       })
-  }, [pageSearch, search])
+  }, [page, search])
 
   return (
     <div className='flex-container animesSearch'>
       <h2>Resultados de: {search}</h2>
       <div className='flex-container'>
-        {animesSearch.map((anime) => (
-          <Link to={`/anime/${anime.mal_id}`} key={anime.mal_id}>
-            <article className='flex-container animeListSearch'>
-              <img src={anime.images.jpg.image_url} />
-              <h2>{anime.title}</h2>
-            </article>
-          </Link>
-        ))}
+        {animesSearch.length !== 0 ? (
+          animesSearch.map((anime) => (
+            <Link to={`/anime/${anime.mal_id}`} key={anime.mal_id}>
+              <article className='flex-container animeListSearch'>
+                <img src={anime.images.jpg.image_url} />
+                <h2>{anime.title}</h2>
+              </article>
+            </Link>
+          ))
+        ) : (
+          <p>No se han encontrados resultados</p>
+        )}
       </div>
-      <Paginator
-        setFunc={setpageSearch}
-        page={pageSearch}
-        limit={lastPageSearch}
-      ></Paginator>
+      <Paginator setFunc={setPage} page={page} limit={lastPage}></Paginator>
     </div>
   )
 }

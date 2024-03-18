@@ -2,20 +2,20 @@ import { useEffect, useState } from 'react'
 import './Animes.css'
 import { Link } from 'react-router-dom'
 import Paginator from '../../components/Paginator/Paginator'
+import usePaginator from '../../customHook/usePaginator'
 
 const LIMIT = 12
 
 const Animes = () => {
   const [animes, setAnimes] = useState([])
-  const [page, setpage] = useState(1)
-  const [lastPage, setLastpage] = useState(1)
+  const { page, setPage, lastPage, setLastPage } = usePaginator()
 
   useEffect(() => {
     fetch('https://api.jikan.moe/v4/anime?limit=' + LIMIT + '&page=' + page)
       .then((res) => res.json())
       .then((res) => {
         console.log(res.data)
-        setLastpage(res.pagination.last_visible_page)
+        setLastPage(res.pagination.last_visible_page)
         setAnimes(res.data)
       })
   }, [page])
@@ -32,7 +32,7 @@ const Animes = () => {
           </Link>
         ))}
       </div>
-      <Paginator setFunc={setpage} page={page} limit={lastPage}></Paginator>
+      <Paginator setFunc={setPage} page={page} limit={lastPage}></Paginator>
     </div>
   )
 }
