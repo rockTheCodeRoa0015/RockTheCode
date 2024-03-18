@@ -1,10 +1,12 @@
 import { useParams } from 'react-router-dom'
 import './DetailsFilm.css'
-import { useMemo, useState } from 'react'
+import { useContext, useMemo, useState } from 'react'
 import Stars from '../../components/Stars/Stars'
 import useStars from '../../customHooks/useStars'
+import { FilmContext } from '../../provider/FilmProvider'
 
-const DetailsFilm = ({ films, setFavourite, setRating }) => {
+const DetailsFilm = () => {
+  const { films, setFavourite, setRating } = useContext(FilmContext)
   const { id } = useParams()
   const [film, setFilm] = useState(films[parseInt(id)])
   const [avg, setAvg] = useState()
@@ -44,12 +46,16 @@ const DetailsFilm = ({ films, setFavourite, setRating }) => {
           <div className='detailFilm'>
             <div className='detailsImg'>
               <img src={film.img} />
+              {/*<div
+                className={film.favourite ? 'fav' : 'noFav'}
+                onClick={handlerFavourite}
+      ></div>*/}
+            </div>
+            <div className='detailsInfo'>
               <div
                 className={film.favourite ? 'fav' : 'noFav'}
                 onClick={handlerFavourite}
               ></div>
-            </div>
-            <div className='detailsInfo'>
               <h2>{film.name}</h2>
               <p>año: {film.age}</p>
               <p>Duración: {film.duration}</p>

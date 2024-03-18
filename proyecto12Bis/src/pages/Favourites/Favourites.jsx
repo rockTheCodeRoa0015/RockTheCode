@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import Film from '../../components/Film/Film'
 import './Favourites.css'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { FilmContext } from '../../provider/FilmProvider'
 
-const Favourites = ({ films }) => {
+const Favourites = () => {
+  const { films } = useContext(FilmContext)
   const [num, setNum] = useState(0)
 
   useEffect(() => {

@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom'
 import Film from '../../components/Film/Film'
 import './Films.css'
+import { useContext } from 'react'
+import { FilmContext } from '../../provider/FilmProvider'
 
-const Films = ({ films }) => {
+const Films = () => {
+  const { films } = useContext(FilmContext)
   return (
     <div className='films'>
       {films.map((film, index) => {

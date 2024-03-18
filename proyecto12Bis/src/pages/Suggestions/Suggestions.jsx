@@ -1,12 +1,14 @@
-import { useEffect, useReducer, useRef } from 'react'
+import { useContext, useEffect, useReducer, useRef } from 'react'
 import Stars from '../../components/Stars/Stars'
 import './Suggestions.css'
 import { arrGenre } from '../../data/data'
 import { INITIAL_STATE, reducerSuggestion } from '../../utils/reducerSuggestion'
 import useStars from '../../customHooks/useStars'
 import Notification from '../../components/Notification/Notification'
+import { FilmContext } from '../../provider/FilmProvider'
 
-const Suggestions = ({ setFilm }) => {
+const Suggestions = () => {
+  const { setFilm } = useContext(FilmContext)
   const { stars, rate, hover, setRate, setHover } = useStars()
 
   const [state, dispatch] = useReducer(reducerSuggestion, INITIAL_STATE)
@@ -51,7 +53,19 @@ const Suggestions = ({ setFilm }) => {
   }
 
   const handleGenre = (e, index) => {
-    dispatch({ type: 'GENRES', event: e, index: index })
+    if (e.target.classList[0] === 'genre') {
+      const newGenre = {
+        name: e.target.textContent,
+        id: index
+      }
+      dispatch({
+        type: 'GENRESADD',
+        index: index,
+        newGenre: newGenre
+      })
+    } else {
+      dispatch({ type: 'GENRESREMOVE', index: index })
+    }
   }
 
   return (

@@ -7,24 +7,20 @@ export const INITIAL_STATE = {
 
 export const reducerSuggestion = (state, action) => {
   switch (action.type) {
-    case 'GENRES':
-      if (action.event.target.classList[0] === 'genre') {
-        const newGenre = {
-          name: action.event.target.textContent,
-          id: action.index
-        }
-        return {
-          ...state,
-          genres: [...state.genres, newGenre],
-          genreClass: [...state.genreClass, action.index]
-        }
-      } else {
-        return {
-          ...state,
-          genres: state.genres.filter((genre) => genre.id !== action.index),
-          genreClass: state.genreClass.filter((genre) => genre !== action.index)
-        }
+    case 'GENRESADD':
+      return {
+        ...state,
+        genres: [...state.genres, action.newGenre],
+        genreClass: [...state.genreClass, action.index]
       }
+
+    case 'GENRESREMOVE':
+      return {
+        ...state,
+        genres: state.genres.filter((genre) => genre.id !== action.index),
+        genreClass: state.genreClass.filter((genre) => genre !== action.index)
+      }
+
     case 'SUBMIT':
       const res = checkForm(state, action)
       return {
