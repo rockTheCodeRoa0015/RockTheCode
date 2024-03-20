@@ -9,8 +9,8 @@ const NumCartProvider = ({ children }) => {
     setNumCart(numCart + num)
   }
 
-  const removeCart = () => {
-    setNumCart(numCart - 1)
+  const removeCart = (num) => {
+    setNumCart(numCart - num)
   }
   return (
     <NumCartContext.Provider

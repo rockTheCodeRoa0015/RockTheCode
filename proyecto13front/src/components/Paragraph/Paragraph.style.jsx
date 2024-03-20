@@ -10,6 +10,9 @@ const StyledParagraph = styled.p`
   font-weight: ${(props) => props.fontweight || 'normal'};
   text-align: ${(props) => props.textalign || 'left'};
   text-shadow: ${(props) => props.textshadow || 'none'};
+  &:hover {
+    background-color: ${(props) => props.bgh || 'transparent'};
+  }
 `
 
 export default StyledParagraph

@@ -1,3 +1,5 @@
+import { getCartBooks } from './cartApi'
+
 export const login = async (userName, pass) => {
   const data = await fetch('http://localhost:3000/api/v1/users/login', {
     headers: {
@@ -77,6 +79,62 @@ const getByUserNameAndMail = async (userName, email) => {
     body: JSON.stringify({
       userName: userName,
       email: email
+    })
+  })
+
+  const res = await data.json()
+  return res
+}
+
+export const getUserByUserId = async (id) => {
+  const data = await fetch(
+    'http://localhost:3000/api/v1/users/byUserId/' + id,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      },
+      method: 'GET'
+    }
+  )
+
+  const res = await data.json()
+  return res[0]
+}
+
+export const getUserDetailsPurchase = async (id) => {
+  const resUser = await getUserByUserId(id)
+  const resCart = await getCartBooks(id)
+  let sumPrice = 0
+  for (const cart of resCart) {
+    sumPrice += cart.price
+  }
+  const obPurchase = {
+    user: resUser,
+    price: sumPrice
+  }
+  return obPurchase
+}
+
+export const putUserData = async (id, values) => {
+  const data = await fetch('http://localhost:3000/api/v1/users/' + id, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    },
+    method: 'PUT',
+    body: JSON.stringify({
+      name: values.name,
+      lastName1: values.lastname,
+      lastName2: values.lastname2,
+      telephone: values.telephone,
+      street: values.street,
+      number: values.number,
+      floor: values.floor,
+      door: values.door,
+      postalCode: values.postalCode,
+      city: values.city,
+      province: values.province
     })
   })
 

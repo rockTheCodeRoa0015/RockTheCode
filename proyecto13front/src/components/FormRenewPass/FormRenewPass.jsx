@@ -7,6 +7,7 @@ import useCustomError from '../../customHooks/useCustomError'
 import { useNavigate } from 'react-router-dom'
 import { renewPass } from '../../api/userApi'
 import { useState } from 'react'
+import useCustomMsg from '../../customHooks/useCustomMsg'
 
 const FormRenewPass = () => {
   const { register, handleSubmit, formState, watch } = useForm({
@@ -19,7 +20,7 @@ const FormRenewPass = () => {
   })
 
   const { error, setError } = useCustomError()
-  const [msg, setMsg] = useState()
+  const { msg, setMsg } = useCustomMsg()
 
   let navigate = useNavigate()
 

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { mobile, tablet } from '../../constants/mediasqueries'
 
 const StyledBasket = styled.section`
   margin-top: 140px;
@@ -11,6 +12,20 @@ const StyledBasket = styled.section`
   }
   > div:nth-child(even) {
     background-color: var(--rtc-color-lightgrey);
+  }
+  > div:last-child {
+    background-color: transparent;
+  }
+
+  ${tablet} {
+    > div {
+      width: 80%;
+    }
+  }
+  ${mobile} {
+    > div {
+      width: 90%;
+    }
   }
 `
 

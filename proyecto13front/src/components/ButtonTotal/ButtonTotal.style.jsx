@@ -12,6 +12,10 @@ const StyledButtonTotal = styled.button`
   &:hover {
     background-color: var(--rtc-background-greenHover);
   }
+  &:disabled {
+    background-color: var(--rtc-color-grey);
+    cursor: default;
+  }
 `
 
 export default StyledButtonTotal

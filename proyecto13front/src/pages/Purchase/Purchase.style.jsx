@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const StyledBooks = styled.section`
+const StyledPurchase = styled.section`
   margin-top: 140px;
   display: flex;
   flex-direction: column;
@@ -8,4 +8,4 @@ const StyledBooks = styled.section`
   align-items: center;
 `
 
-export default StyledBooks
+export default StyledPurchase

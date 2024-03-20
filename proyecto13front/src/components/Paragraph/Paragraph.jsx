@@ -10,7 +10,8 @@ const Paragraph = ({
   color,
   fontweight,
   textalign,
-  textshadow
+  textshadow,
+  bgh
 }) => {
   return (
     <StyledParagraph
@@ -23,6 +24,7 @@ const Paragraph = ({
       fontweight={fontweight}
       textalign={textalign}
       textshadow={textshadow}
+      bgh={bgh}
     >
       {children}
     </StyledParagraph>

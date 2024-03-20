@@ -14,6 +14,8 @@ import ToggleMenuProvider from './provider/ToggleMenuProvider'
 import Register from './pages/Register/Register'
 import RenewPass from './pages/RenewPass/RenewPass'
 import ToggleProfileProvider from './provider/ToggleProfileProvider'
+import DelItemProvider from './provider/DelItemProvider'
+import Purchase from './pages/Purchase/Purchase'
 
 const App = () => {
   return (
@@ -26,17 +28,20 @@ const App = () => {
               <HeaderMobile />
             </ToggleProfileProvider>
           </ToggleMenuProvider>
-          <Routes>
-            <Route path='/' element={<Home />}></Route>
-            <Route path='/books/:id' element={<Books />}></Route>
-            <Route path='/bookDetail/:id' element={<BookDetail />}></Route>
-            <Route path='/profile' element={<Profile />}></Route>
-            <Route path='/basket' element={<Basket />}></Route>
-            <Route path='/login' element={<Login />}></Route>
-            <Route path='/register' element={<Register />}></Route>
-            <Route path='/renewPass' element={<RenewPass />}></Route>
-            <Route path='/*' element={<Home />}></Route>
-          </Routes>
+          <DelItemProvider>
+            <Routes>
+              <Route path='/' element={<Home />}></Route>
+              <Route path='/books/:id' element={<Books />}></Route>
+              <Route path='/bookDetail/:id' element={<BookDetail />}></Route>
+              <Route path='/profile' element={<Profile />}></Route>
+              <Route path='/basket' element={<Basket />}></Route>
+              <Route path='/purchase' element={<Purchase />}></Route>
+              <Route path='/login' element={<Login />}></Route>
+              <Route path='/register' element={<Register />}></Route>
+              <Route path='/renewPass' element={<RenewPass />}></Route>
+              <Route path='/*' element={<Home />}></Route>
+            </Routes>
+          </DelItemProvider>
         </NumCartProvider>
       </LoginProvider>
     </>

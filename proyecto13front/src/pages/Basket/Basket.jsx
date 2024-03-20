@@ -1,22 +1,37 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Title from '../../components/Title/Title'
 import StyledBasket from './Basket.style'
 import { getDetailCart } from '../../api/cartApi'
 import Paragraph from '../../components/Paragraph/Paragraph'
 import CustomDiv from '../../components/CustomDiv/CustomDiv'
 import Image from '../../components/Image/Image'
-import ButtonTotal from '../../components/ButtonTotal/ButtonTotal'
+import CartFunctions from '../../components/CartFunctions/CartFunctions'
+import { DelItemContext } from '../../provider/DelItemProvider'
+import { NavLink } from 'react-router-dom'
+import { NumCartContext } from '../../provider/NumCartProvider'
 
 const Basket = () => {
   const [cartBooks, setCartBooks] = useState([])
+  const [sumTotal, setSumTotal] = useState()
+  const { delItem } = useContext(DelItemContext)
+  const { numCart } = useContext(NumCartContext)
 
   useEffect(() => {
     callBooks()
-  }, [])
+  }, [delItem, numCart])
 
   const callBooks = async () => {
     const books = await getDetailCart(localStorage.getItem('id'))
+    sumPrice(books)
     setCartBooks(books)
+  }
+
+  const sumPrice = (books) => {
+    let sum = 0
+    for (const book of books) {
+      sum += book.price * book.quantity
+    }
+    setSumTotal(sum.toFixed(2))
   }
 
   return (
@@ -41,7 +56,7 @@ const Basket = () => {
           <Paragraph>Añadir/Quitar</Paragraph>
         </CustomDiv>
       </CustomDiv>
-      {cartBooks ? (
+      {cartBooks.length > 0 ? (
         cartBooks.map((book) => (
           <CustomDiv key={book.id} dir={'row'} w={'50%'} h={'110px'}>
             <CustomDiv w={'10%'} h={'100%'}>
@@ -63,15 +78,44 @@ const Basket = () => {
             <CustomDiv w={'10%'} h={'100%'}>
               <Paragraph>{book.price} €</Paragraph>
             </CustomDiv>
-            <CustomDiv w={'20%'} h={'100%'} gap={'var(--rtc-gap-xxs)'}>
-              <ButtonTotal>-</ButtonTotal>
-              <Paragraph>{book.quantity}</Paragraph>
-              <ButtonTotal>+</ButtonTotal>
-            </CustomDiv>
+            <CartFunctions
+              numBooks={book.quantity}
+              idBook={book.id}
+              personalId={book.personalId}
+              w={'20%'}
+              h={'100%'}
+              gap={'var(--rtc-gap-xxs)'}
+            ></CartFunctions>
           </CustomDiv>
         ))
       ) : (
         <Paragraph>No hay articulos en la cesta</Paragraph>
+      )}
+      {cartBooks.length > 0 && (
+        <>
+          <CustomDiv w={'50%'} h={'50px'}>
+            <CustomDiv w={'10%'} h={'100%'}></CustomDiv>
+            <CustomDiv w={'60%'} h={'100%'}></CustomDiv>
+            <CustomDiv w={'10%'} h={'100%'}>
+              <Paragraph>{sumTotal} €</Paragraph>
+            </CustomDiv>
+            <CustomDiv w={'20%'} h={'100%'}></CustomDiv>
+          </CustomDiv>
+          <CustomDiv w={'50%'} margin={'var(--rtc-margin-s)'} jc={'flex-end'}>
+            <NavLink to='/purchase'>
+              <Paragraph
+                bg={'var(--rtc-background-green)'}
+                color={'var(--rtc-color-white)'}
+                padding={'var(--rtc-padding-xs)'}
+                radius={'var(--rtc-border-radius-button)'}
+                cursor={'pointer'}
+                bgh={'var(--rtc-background-greenHover)'}
+              >
+                Continuar
+              </Paragraph>
+            </NavLink>
+          </CustomDiv>
+        </>
       )}
     </StyledBasket>
   )

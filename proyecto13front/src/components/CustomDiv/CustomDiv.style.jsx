@@ -17,6 +17,7 @@ const StyledCustomDiv = styled.div`
   border-radius: ${(props) => props.br || 'none'};
   padding: ${(props) => props.padding || '0'};
   border: ${(props) => props.border || 'none'};
+  margin: ${(props) => props.margin || 'none'};
 `
 
 export default StyledCustomDiv

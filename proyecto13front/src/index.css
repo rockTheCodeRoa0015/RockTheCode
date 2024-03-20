@@ -37,6 +37,8 @@ a {
   --rtc-color-add: rgb(239, 185, 50);
   --rtc-color-add-hover: rgb(243, 201, 96);
   --rtcbackground--form: rgb(55, 150, 63);
+  --rtc-background--del: rgb(251, 8, 8);
+  --rtc-background--delHover: rgb(247, 77, 77);
 
   /* TEXT-COLORS */
   --rtc-primary-text: var(--rtc-color-white);
