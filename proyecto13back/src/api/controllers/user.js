@@ -69,15 +69,9 @@ const getUserById = async (req, res, next) => {
 
 const getUserByUserId = async (req, res, next) => {
   try {
-    const user = await User.find({
-      id: req.body.id
-    })
-    const response = {
-      user: user
-    }
-    user.length === 0 ? (response.status = 400) : (response.status = 200)
-
-    return res.status(200).json(response)
+    const { id } = req.params
+    const user = await User.find({ id: id })
+    return res.status(200).json(user)
   } catch (error) {
     return res.status(400).json('Error')
   }
@@ -118,7 +112,7 @@ const updateUsers = async (req, res, next) => {
     const { id } = req.params
     const newUser = new User(req.body)
     newUser._id = id
-    const updateUser = await Consola.findByIdAndUpdate(id, newUser, {
+    const updateUser = await User.findByIdAndUpdate(id, newUser, {
       new: true
     })
     return res

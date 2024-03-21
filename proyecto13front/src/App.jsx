@@ -16,6 +16,7 @@ import RenewPass from './pages/RenewPass/RenewPass'
 import ToggleProfileProvider from './provider/ToggleProfileProvider'
 import DelItemProvider from './provider/DelItemProvider'
 import Purchase from './pages/Purchase/Purchase'
+import SearchBook from './pages/SearchBook/SearchBook'
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
               <Route path='/' element={<Home />}></Route>
               <Route path='/books/:id' element={<Books />}></Route>
               <Route path='/bookDetail/:id' element={<BookDetail />}></Route>
+              <Route path='/search/:search' element={<SearchBook />}></Route>
               <Route path='/profile' element={<Profile />}></Route>
               <Route path='/basket' element={<Basket />}></Route>
               <Route path='/purchase' element={<Purchase />}></Route>

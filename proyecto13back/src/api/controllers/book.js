@@ -30,13 +30,61 @@ const getBookByPersonalId = async (req, res, next) => {
   }
 }
 
+const getBookByCategorie = async (req, res, next) => {
+  try {
+    const { categorie, page, limit } = req.query
+    let countbook = 0
+    let book = ''
+    if (categorie !== 'all') {
+      countbook = await Book.find({ categories: categorie })
+      book = await Book.find({ categories: categorie })
+        .skip((page - 1) * limit)
+        .limit(limit)
+        .sort({ title: 1 })
+    } else {
+      countbook = await Book.find({ categories: { $nin: [9, 10] } })
+      book = await Book.find({ categories: { $nin: [9, 10] } })
+        .skip((page - 1) * limit)
+        .limit(limit)
+        .sort({ title: 1 })
+    }
+    const fullInfoBook = {
+      metadata: {
+        count: countbook.length,
+        pageNumber: page,
+        totalPage: Math.ceil(countbook.length / limit)
+      },
+      data: book
+    }
+
+    return res.status(200).json(fullInfoBook)
+  } catch (error) {
+    return res.status(400).json('Error')
+  }
+}
+
 const getBookByTitle = async (req, res, next) => {
   try {
-    const { title } = req.params
+    const { title, page, limit } = req.query
+    const countbook = await Book.find({
+      title: { $regex: '.*' + title + '.*' }
+    })
     const book = await Book.find({
       title: { $regex: '.*' + title + '.*' }
     })
-    return res.status(200).json(book)
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .sort({ title: 1 })
+
+    const fullInfoBook = {
+      metadata: {
+        count: countbook.length,
+        pageNumber: page,
+        totalPage: Math.ceil(countbook.length / limit)
+      },
+      data: book
+    }
+    return res.status(200).json(fullInfoBook)
   } catch (error) {
     return res.status(400).json('Error')
   }
@@ -84,7 +132,6 @@ const updateBook = async (req, res, next) => {
     const bookPreUpdate = await Book.findById(id)
     const newBook = new Book(req.body)
     newBook._id = id
-    newBook.categories = [...bookPreUpdate.categories, ...newBook.categories]
     if (req.file) {
       newBook.cover = req.file.path
       deleteFile(bookPreUpdate.cover)
@@ -113,6 +160,7 @@ module.exports = {
   getBooks,
   getBookById,
   getBookByPersonalId,
+  getBookByCategorie,
   getBookByTitle,
   getBookTopSales,
   getBookLastAdd,

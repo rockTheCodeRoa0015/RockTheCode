@@ -2,6 +2,7 @@ const { isAdmin } = require('../../middleware/auth')
 const {
   getCategories,
   getCategorieById,
+  getCategoriesSelect,
   getCategorieByPersonalId,
   postCategorie,
   updateCategorie,
@@ -11,6 +12,7 @@ const {
 const categoriesRoutes = require('express').Router()
 
 categoriesRoutes.get('/personalId/:id', getCategorieByPersonalId)
+categoriesRoutes.get('/select', getCategoriesSelect)
 categoriesRoutes.get('/:id', getCategorieById)
 categoriesRoutes.get('/', getCategories)
 categoriesRoutes.post('/', [isAdmin], postCategorie)

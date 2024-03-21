@@ -17,7 +17,8 @@ fs.readFile('C:/proyecto 13 - Ventas.csv', 'utf-8', (err, data) => {
         price: saleRow[3],
         numCopies: saleRow[4],
         date: saleRow[5],
-        state: saleRow[6]
+        state: saleRow[6],
+        pay: saleRow[7]
       }
       ARRSALES.push(obSale)
     }

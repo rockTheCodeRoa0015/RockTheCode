@@ -19,6 +19,15 @@ const getCategorieById = async (req, res, next) => {
   }
 }
 
+const getCategoriesSelect = async (req, res, next) => {
+  try {
+    const categorie = await Categorie.find({ id: { $nin: [9, 10] } })
+    return res.status(200).json(categorie)
+  } catch (error) {
+    return res.status(400).json('Error en la solicitud')
+  }
+}
+
 const getCategorieByPersonalId = async (req, res, next) => {
   try {
     const { id } = req.params
@@ -70,6 +79,7 @@ const deleteCategorie = async (req, res, next) => {
 module.exports = {
   getCategories,
   getCategorieById,
+  getCategoriesSelect,
   getCategorieByPersonalId,
   postCategorie,
   updateCategorie,

@@ -8,7 +8,18 @@ const salesSchema = new mongoose.Schema(
     price: { type: Number, required: false },
     numCopies: { type: Number, required: false },
     date: { type: Date, required: false },
-    state: { type: String, trim: true, required: false }
+    state: {
+      type: String,
+      trim: true,
+      enum: ['comprado', 'enviado', 'entregado'],
+      required: false
+    },
+    pay: {
+      type: String,
+      trim: true,
+      enum: ['Visa', 'Paypal', 'Contrarembolso'],
+      required: false
+    }
   },
   {
     timestamps: true,

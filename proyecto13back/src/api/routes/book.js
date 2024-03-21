@@ -4,6 +4,7 @@ const {
   getBooks,
   getBookById,
   getBookByPersonalId,
+  getBookByCategorie,
   getBookByTitle,
   getBookTopSales,
   getBookLastAdd,
@@ -15,7 +16,8 @@ const {
 const booksRoutes = require('express').Router()
 
 booksRoutes.get('/getByPersonalId/:id', [isAuth], getBookByPersonalId)
-booksRoutes.get('/getByTitle/:title', getBookByTitle)
+booksRoutes.get('/getByCategorie', getBookByCategorie)
+booksRoutes.get('/getByTitle', getBookByTitle)
 booksRoutes.get('/getTopSales', getBookTopSales)
 booksRoutes.get('/getLastAdd', getBookLastAdd)
 booksRoutes.get('/:id', getBookById)

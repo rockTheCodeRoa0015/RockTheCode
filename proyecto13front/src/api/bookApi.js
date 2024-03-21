@@ -1,3 +1,5 @@
+import { getParamsCategories } from '../utils/getCategories'
+
 export const getBookByPerosnalId = async (id) => {
   const data = await fetch(
     'http://localhost:3000/api/v1/books/getByPersonalId/' + id,
@@ -30,17 +32,18 @@ export const setStock = async (id, num) => {
   return res
 }
 
-export const getBooksByCategorie = async (cat, setBooks) => {
-  let id = ''
-  if (cat === 'manga') {
-    id = 9
-  } else if (cat === 'infantil') {
-    id = 10
-  } else {
-    id = 'all'
-  }
+export const getBooksByCategorie = async (
+  cat,
+  setBooks,
+  page,
+  setLastPage,
+  setTitle,
+  value
+) => {
+  const categoire = value !== '' ? value : cat
+  const infoCat = getParamsCategories(categoire)
   const data = await fetch(
-    'http://localhost:3000/api/v1/books/getByCategorie/' + id,
+    `http://localhost:3000/api/v1/books/getByCategorie?categorie=${infoCat.id}&page=${page}&limit=10`,
     {
       headers: {
         'Content-Type': 'application/json'
@@ -50,5 +53,24 @@ export const getBooksByCategorie = async (cat, setBooks) => {
   )
 
   const res = await data.json()
-  setBooks(res)
+  setLastPage(res.metadata.totalPage)
+  setTitle(infoCat.title)
+  setBooks(res.data)
+}
+
+export const getBooksByTitle = async (title, setBooks, page, setLastPage) => {
+  const upTitle = title.toUpperCase()
+  const data = await fetch(
+    `http://localhost:3000/api/v1/books/getByTitle?title=${upTitle}&page=${page}&limit=10`,
+    {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'GET'
+    }
+  )
+
+  const res = await data.json()
+  setLastPage(res.metadata.totalPage)
+  setBooks(res.data)
 }

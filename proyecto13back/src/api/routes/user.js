@@ -15,10 +15,10 @@ const {
 const usersRoutes = require('express').Router()
 
 usersRoutes.get('/nextUser', getNextUser)
+usersRoutes.get('/byUserId/:id', [isAuth], getUserByUserId)
 usersRoutes.get('/:id', [isAuth], getUserById)
 usersRoutes.get('/', [isAuth], getUsers)
 usersRoutes.post('/byUserAndMail', getUserByUsernameAndMail)
-usersRoutes.post('/byUserId', [isAuth], getUserByUserId)
 usersRoutes.post('/register', register)
 usersRoutes.post('/login', login)
 usersRoutes.put('/:id', [isAuth], updateUsers)
