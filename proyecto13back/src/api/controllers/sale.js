@@ -21,9 +21,22 @@ const getSalesById = async (req, res, next) => {
 
 const getSalesByUser = async (req, res, next) => {
   try {
-    const { id } = req.params
+    const { id, page, limit } = req.query
+    const countSale = await Sale.find({ user: id })
     const sale = await Sale.find({ user: id })
-    return res.status(200).json(sale)
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .sort({ date: -1 })
+
+    const fullInfoSales = {
+      metadata: {
+        count: countSale.length,
+        pageNumber: page,
+        totalPage: Math.ceil(countSale.length / limit)
+      },
+      data: sale
+    }
+    return res.status(200).json(fullInfoSales)
   } catch (error) {
     return res.status(400).json('Error')
   }

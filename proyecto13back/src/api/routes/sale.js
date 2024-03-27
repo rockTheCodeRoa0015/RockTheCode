@@ -11,7 +11,7 @@ const {
 
 const salesRoutes = require('express').Router()
 
-salesRoutes.get('/getByUser/:id', [isAuth], getSalesByUser)
+salesRoutes.get('/getByUser', [isAuth], getSalesByUser)
 salesRoutes.get('/getNextSale', [isAuth], getNextSales)
 salesRoutes.get('/:id', [isAuth], getSalesById)
 salesRoutes.get('/', [isAuth], getSales)
