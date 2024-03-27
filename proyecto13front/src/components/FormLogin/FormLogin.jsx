@@ -7,9 +7,10 @@ import Paragraph from '../Paragraph/Paragraph'
 import { login } from '../../api/userApi'
 import { useNavigate } from 'react-router-dom'
 import { LoginContext } from '../../provider/LoginProvider'
-import useCustomError from '../../customHooks/useCustomError'
 import { NumCartContext } from '../../provider/NumCartProvider'
 import { getCartByPersonalId } from '../../api/cartApi'
+import useCustomMsg from '../../customHooks/useCustomMsg'
+import { saveLoginData } from '../../utils/loginFunctions'
 
 const FormLogin = () => {
   const { register, handleSubmit, formState } = useForm({
@@ -19,7 +20,7 @@ const FormLogin = () => {
     }
   })
 
-  const { error, setError } = useCustomError()
+  const { error, setError } = useCustomMsg()
 
   const { logoned } = useContext(LoginContext)
   const { setNumCart } = useContext(NumCartContext)
@@ -29,9 +30,7 @@ const FormLogin = () => {
   const onSubmit = async (values) => {
     const res = await login(values.userNameLogin, values.passLogin)
     if (res.user) {
-      localStorage.setItem('token', res.token)
-      localStorage.setItem('_id', res.user._id)
-      localStorage.setItem('id', res.user.id)
+      saveLoginData(res)
       logoned()
       const num = await getCartByPersonalId(res.user.id)
       if (num !== 0) {

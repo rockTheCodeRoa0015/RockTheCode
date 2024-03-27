@@ -1,5 +1,7 @@
+import { path } from '../constants/pathBackend'
+
 export const getCategoriesSelect = async (setCategories) => {
-  const data = await fetch(`http://localhost:3000/api/v1/categories/select`, {
+  const data = await fetch(path + '/api/v1/categories/select', {
     headers: {
       'Content-Type': 'application/json'
     },

@@ -3,10 +3,8 @@ import Paragraph from '../Paragraph/Paragraph'
 import StyledFormRenewPass from './FormRenewPass.style'
 import Button from '../Button/Button'
 import { useForm } from 'react-hook-form'
-import useCustomError from '../../customHooks/useCustomError'
 import { useNavigate } from 'react-router-dom'
 import { renewPass } from '../../api/userApi'
-import { useState } from 'react'
 import useCustomMsg from '../../customHooks/useCustomMsg'
 
 const FormRenewPass = () => {
@@ -19,8 +17,7 @@ const FormRenewPass = () => {
     }
   })
 
-  const { error, setError } = useCustomError()
-  const { msg, setMsg } = useCustomMsg()
+  const { msg, setMsg, error, setError } = useCustomMsg()
 
   let navigate = useNavigate()
 

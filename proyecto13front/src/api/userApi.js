@@ -1,7 +1,8 @@
+import { path } from '../constants/pathBackend'
 import { getCartBooks } from './cartApi'
 
 export const login = async (userName, pass) => {
-  const data = await fetch('http://localhost:3000/api/v1/users/login', {
+  const data = await fetch(path + '/api/v1/users/login', {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -18,7 +19,7 @@ export const login = async (userName, pass) => {
 
 export const registerUser = async (userName, email, pass) => {
   const nextUserRes = await nextUser()
-  const data = await fetch('http://localhost:3000/api/v1/users/register', {
+  const data = await fetch(path + '/api/v1/users/register', {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -36,7 +37,7 @@ export const registerUser = async (userName, email, pass) => {
 }
 
 const nextUser = async () => {
-  const data = await fetch('http://localhost:3000/api/v1/users/nextUser', {
+  const data = await fetch(path + '/api/v1/users/nextUser', {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -51,7 +52,7 @@ export const renewPass = async (userName, email, pass) => {
   const userRes = await getByUserNameAndMail(userName, email)
   if (userRes.status === 200) {
     const data = await fetch(
-      'http://localhost:3000/api/v1/users/pass/' + userRes.user[0]._id,
+      path + '/api/v1/users/pass/' + userRes.user[0]._id,
       {
         headers: {
           'Content-Type': 'application/json'
@@ -71,7 +72,7 @@ export const renewPass = async (userName, email, pass) => {
 }
 
 const getByUserNameAndMail = async (userName, email) => {
-  const data = await fetch('http://localhost:3000/api/v1/users/byUserAndMail', {
+  const data = await fetch(path + '/api/v1/users/byUserAndMail', {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -87,16 +88,13 @@ const getByUserNameAndMail = async (userName, email) => {
 }
 
 export const getUserByUserId = async (id) => {
-  const data = await fetch(
-    'http://localhost:3000/api/v1/users/byUserId/' + id,
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-      },
-      method: 'GET'
-    }
-  )
+  const data = await fetch(path + '/api/v1/users/byUserId/' + id, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    },
+    method: 'GET'
+  })
 
   const res = await data.json()
   return res[0]
@@ -117,7 +115,7 @@ export const getUserDetailsPurchase = async (id) => {
 }
 
 export const putUserData = async (id, values) => {
-  const data = await fetch('http://localhost:3000/api/v1/users/' + id, {
+  const data = await fetch(path + '/api/v1/users/' + id, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -140,4 +138,13 @@ export const putUserData = async (id, values) => {
 
   const res = await data.json()
   return res
+}
+
+export const ModifyUserData = async (id, values) => {
+  const resUser = await getUserByUserId(id)
+  const restPutUser = await putUserData(resUser._id, values)
+  if (!restPutUser.mensaje) {
+    return { msg: 'Error al Modificar los datos del usuario', status: 400 }
+  }
+  return { msg: 'Datos mofificados', status: 200 }
 }

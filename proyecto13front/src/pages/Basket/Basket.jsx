@@ -17,27 +17,13 @@ const Basket = () => {
   const { numCart } = useContext(NumCartContext)
 
   useEffect(() => {
-    callBooks()
+    getDetailCart(localStorage.getItem('id'), setCartBooks, setSumTotal)
   }, [delItem, numCart])
-
-  const callBooks = async () => {
-    const books = await getDetailCart(localStorage.getItem('id'))
-    sumPrice(books)
-    setCartBooks(books)
-  }
-
-  const sumPrice = (books) => {
-    let sum = 0
-    for (const book of books) {
-      sum += book.price * book.quantity
-    }
-    setSumTotal(sum.toFixed(2))
-  }
 
   return (
     <StyledBasket>
       <Title>Cesta de la compra</Title>
-      <CustomDiv w={'50%'} h={'50px'}>
+      <CustomDiv w={'1000px'} h={'50px'}>
         <CustomDiv w={'10%'} h={'100%'}>
           <Paragraph>Imagen</Paragraph>
         </CustomDiv>
@@ -58,7 +44,7 @@ const Basket = () => {
       </CustomDiv>
       {cartBooks.length > 0 ? (
         cartBooks.map((book) => (
-          <CustomDiv key={book.id} dir={'row'} w={'50%'} h={'110px'}>
+          <CustomDiv key={book.id} dir={'row'} w={'1000px'} h={'110px'}>
             <CustomDiv w={'10%'} h={'100%'}>
               <Image
                 src={book.cover}
@@ -93,7 +79,7 @@ const Basket = () => {
       )}
       {cartBooks.length > 0 && (
         <>
-          <CustomDiv w={'50%'} h={'50px'}>
+          <CustomDiv w={'1000px'} h={'50px'}>
             <CustomDiv w={'10%'} h={'100%'}></CustomDiv>
             <CustomDiv w={'60%'} h={'100%'}></CustomDiv>
             <CustomDiv w={'10%'} h={'100%'}>

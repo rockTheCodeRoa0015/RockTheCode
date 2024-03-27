@@ -7,7 +7,8 @@ import { useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import { login, registerUser } from '../../api/userApi'
 import { LoginContext } from '../../provider/LoginProvider'
-import useCustomError from '../../customHooks/useCustomError'
+import useCustomMsg from '../../customHooks/useCustomMsg'
+import { saveLoginData } from '../../utils/loginFunctions'
 
 const FormRegister = () => {
   const { register, handleSubmit, formState, watch } = useForm({
@@ -19,7 +20,7 @@ const FormRegister = () => {
     }
   })
 
-  const { error, setError } = useCustomError()
+  const { error, setError } = useCustomMsg()
 
   const { logoned } = useContext(LoginContext)
 
@@ -34,8 +35,7 @@ const FormRegister = () => {
     if (resRegister.status === 201) {
       const res = await login(values.userNameRegister, values.passRegister)
       if (res.user) {
-        localStorage.setItem('token', res.token)
-        localStorage.setItem('id', res.user._id)
+        saveLoginData(res)
         logoned()
         navigate('/')
       } else {

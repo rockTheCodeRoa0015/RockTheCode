@@ -51,6 +51,11 @@ export const ListNavMyCount = [
     action: 'profile'
   },
   {
+    path: '/sales',
+    desc: 'Mis pedidos',
+    action: 'profile'
+  },
+  {
     path: '/',
     desc: 'Logout',
     action: 'logout'

@@ -10,14 +10,14 @@ import { LoginContext } from '../../provider/LoginProvider'
 import ButtonCart from '../../components/ButtonCart/ButtonCart'
 import ButtonTotal from '../../components/ButtonTotal/ButtonTotal'
 import useAddCart from '../../customHooks/useAddCart'
-import useCustomError from '../../customHooks/useCustomError'
+import useCustomMsg from '../../customHooks/useCustomMsg'
 
 const BookDetail = () => {
   const { id } = useParams()
   const [book, setBook] = useState()
   const [categorie, setCategorie] = useState()
   const { num, sumNum, substractNum } = useAddCart(1)
-  const { error, setError } = useCustomError()
+  const { error, setError } = useCustomMsg()
   const { isLogin } = useContext(LoginContext)
 
   useEffect(() => {

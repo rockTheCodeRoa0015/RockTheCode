@@ -17,6 +17,7 @@ import ToggleProfileProvider from './provider/ToggleProfileProvider'
 import DelItemProvider from './provider/DelItemProvider'
 import Purchase from './pages/Purchase/Purchase'
 import SearchBook from './pages/SearchBook/SearchBook'
+import Sales from './pages/Sales/Sales'
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
               <Route path='/bookDetail/:id' element={<BookDetail />}></Route>
               <Route path='/search/:search' element={<SearchBook />}></Route>
               <Route path='/profile' element={<Profile />}></Route>
+              <Route path='/sales' element={<Sales />}></Route>
               <Route path='/basket' element={<Basket />}></Route>
               <Route path='/purchase' element={<Purchase />}></Route>
               <Route path='/login' element={<Login />}></Route>

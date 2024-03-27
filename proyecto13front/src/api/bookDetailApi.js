@@ -1,5 +1,7 @@
+import { path } from '../constants/pathBackend'
+
 export const getBookDetails = async (id, setBook, setCategorie) => {
-  const data = await fetch('http://localhost:3000/api/v1/books/' + id, {
+  const data = await fetch(path + '/api/v1/books/' + id, {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -11,7 +13,7 @@ export const getBookDetails = async (id, setBook, setCategorie) => {
   setBook(res)
 
   const dataCat = await fetch(
-    'http://localhost:3000/api/v1/categories/personalId/' + res.categories,
+    path + '/api/v1/categories/personalId/' + res.categories,
     {
       headers: {
         'Content-Type': 'application/json'

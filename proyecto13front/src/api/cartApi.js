@@ -1,9 +1,11 @@
+import { path } from '../constants/pathBackend'
+import { sumPrice } from '../utils/sumPrices'
 import { getBookByPerosnalId, setStock } from './bookApi'
 import { getNextSale, postSale } from './saleApi'
 import { getUserByUserId, putUserData } from './userApi'
 
 const postCart = async (book, num) => {
-  const data = await fetch('http://localhost:3000/api/v1/carts', {
+  const data = await fetch(path + '/api/v1/carts', {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -22,7 +24,7 @@ const postCart = async (book, num) => {
 }
 
 const putCart = async (num, id) => {
-  const data = await fetch('http://localhost:3000/api/v1/carts/' + id, {
+  const data = await fetch(path + '/api/v1/carts/' + id, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -38,20 +40,17 @@ const putCart = async (num, id) => {
 }
 
 const getCartByUserAndBook = async (book) => {
-  const data = await fetch(
-    'http://localhost:3000/api/v1/carts/getCartUserAndBook',
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-      },
-      method: 'POST',
-      body: JSON.stringify({
-        user: localStorage.getItem('id'),
-        book: book.id
-      })
-    }
-  )
+  const data = await fetch(path + '/api/v1/carts/getCartUserAndBook', {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    },
+    method: 'POST',
+    body: JSON.stringify({
+      user: localStorage.getItem('id'),
+      book: book.id
+    })
+  })
 
   const res = await data.json()
   return res
@@ -78,16 +77,13 @@ export const addBooksCart = async (book, num) => {
 }
 
 export const getCartBooks = async (id) => {
-  const data = await fetch(
-    'http://localhost:3000/api/v1/carts/getByUser/' + id,
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-      },
-      method: 'GET'
-    }
-  )
+  const data = await fetch(path + '/api/v1/carts/getByUser/' + id, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    },
+    method: 'GET'
+  })
 
   const res = await data.json()
   return res
@@ -104,7 +100,7 @@ export const getCartByPersonalId = async (id) => {
   return num
 }
 
-export const getDetailCart = async (id) => {
+export const getDetailCart = async (id, setCartBooks, setSumTotal) => {
   const arrBooks = []
   const res = await getCartBooks(id)
   if (res.length !== 0) {
@@ -122,12 +118,12 @@ export const getDetailCart = async (id) => {
       arrBooks.push(obBook)
     }
   }
-
-  return arrBooks
+  setCartBooks(arrBooks)
+  sumPrice(arrBooks, setSumTotal)
 }
 
 export const delCart = async (id) => {
-  const data = await fetch('http://localhost:3000/api/v1/carts/' + id, {
+  const data = await fetch(path + '/api/v1/carts/' + id, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${localStorage.getItem('token')}`

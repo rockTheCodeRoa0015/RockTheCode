@@ -1,5 +1,7 @@
+import { path } from '../constants/pathBackend'
+
 export const getTopSales = async (setTopBooks) => {
-  const data = await fetch('http://localhost:3000/api/v1/books/getTopSales', {
+  const data = await fetch(path + '/api/v1/books/getTopSales', {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -12,7 +14,7 @@ export const getTopSales = async (setTopBooks) => {
 }
 
 export const getLastAdd = async (setLastAddBooks) => {
-  const data = await fetch('http://localhost:3000/api/v1/books/getLastAdd', {
+  const data = await fetch(path + '/api/v1/books/getLastAdd', {
     headers: {
       'Content-Type': 'application/json'
     },

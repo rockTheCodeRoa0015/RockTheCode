@@ -1,18 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react'
-import StyledFormUserDetails from './FormUserDetails.style'
-import CustomDiv from '../CustomDiv/CustomDiv'
-import Button from '../Button/Button'
-import Label from '../Label/Label'
-import { payMethod } from '../../constants/payMethod'
 import { useForm } from 'react-hook-form'
+import StyledFormProfile from './FormProfile.style'
+import CustomDiv from '../CustomDiv/CustomDiv'
 import Paragraph from '../Paragraph/Paragraph'
-import { getUserDetailsPurchase } from '../../api/userApi'
-import { purchase } from '../../api/cartApi'
-import { NumCartContext } from '../../provider/NumCartProvider'
+import Label from '../Label/Label'
+import Button from '../Button/Button'
 import useCustomMsg from '../../customHooks/useCustomMsg'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { ModifyUserData, getUserDetailsPurchase } from '../../api/userApi'
+import useEditProfile from '../../customHooks/useEditProfile'
 
-const FormUserDetails = () => {
+const FormProfile = () => {
   const { register, handleSubmit, formState, setValue } = useForm({
     defaultValues: {
       name: '',
@@ -25,15 +22,12 @@ const FormUserDetails = () => {
       door: '',
       postalCode: '',
       city: '',
-      province: '',
-      pay: ''
+      province: ''
     }
   })
 
-  const [totalPrice, setTotalPrice] = useState()
-  const { setNumCart } = useContext(NumCartContext)
   const { msg, setMsg, error, setError } = useCustomMsg()
-  let navigate = useNavigate()
+  const { edit, btnName, modifyEdit, mofifyBtnName } = useEditProfile(true)
 
   useEffect(() => {
     getuserDetails()
@@ -52,28 +46,27 @@ const FormUserDetails = () => {
     setValue('postalCode', res.user.postalCode)
     setValue('city', res.user.city)
     setValue('province', res.user.province)
-    setTotalPrice(res.price)
   }
 
   const onSubmit = async (values) => {
-    const res = await purchase(localStorage.getItem('id'), values)
-    if (res.status === 200) {
-      setMsg(res.msg)
-      setNumCart(0)
-      setTimeout(() => {
-        navigate('/')
-      }, 2000)
-    } else {
-      setError(res.msg)
+    modifyEdit()
+    mofifyBtnName()
+    if (!edit) {
+      const res = await ModifyUserData(localStorage.getItem('id'), values)
+      if (res.status === 200) {
+        setMsg(res.msg)
+      } else {
+        setError(res.msg)
+      }
     }
   }
-
   return (
-    <StyledFormUserDetails onSubmit={handleSubmit(onSubmit)}>
+    <StyledFormProfile onSubmit={handleSubmit(onSubmit)}>
       <CustomDiv w={'100%'}>
         <CustomDiv dir={'column'} w={'250px'} gap={'var(--rtc-gap-xs)'}>
           <Label>Nombre</Label>
           <input
+            disabled={edit}
             id='name'
             type='text'
             placeholder='Nombre'
@@ -100,6 +93,7 @@ const FormUserDetails = () => {
         <CustomDiv dir={'column'} w={'250px'} gap={'var(--rtc-gap-xs)'}>
           <Label>Primer apellido</Label>
           <input
+            disabled={edit}
             id='lastname'
             type='text'
             placeholder='Primer apellido'
@@ -126,6 +120,7 @@ const FormUserDetails = () => {
         <CustomDiv dir={'column'} w={'250px'} gap={'var(--rtc-gap-xs)'}>
           <Label>Segundo apellido</Label>
           <input
+            disabled={edit}
             id='lastname2'
             type='text'
             placeholder='Segunda apellido'
@@ -137,6 +132,7 @@ const FormUserDetails = () => {
         <CustomDiv dir={'column'} w={'380px'} gap={'var(--rtc-gap-xs)'}>
           <Label>Telefono</Label>
           <input
+            disabled={edit}
             id='telephone'
             type='text'
             placeholder='Telefono'
@@ -163,6 +159,7 @@ const FormUserDetails = () => {
         <CustomDiv dir={'column'} w={'380px'} gap={'var(--rtc-gap-xs)'}>
           <Label>Calle</Label>
           <input
+            disabled={edit}
             id='street'
             type='text'
             placeholder='Calle'
@@ -191,6 +188,7 @@ const FormUserDetails = () => {
         <CustomDiv dir={'column'} w={'250px'} gap={'var(--rtc-gap-xs)'}>
           <Label>Numero</Label>
           <input
+            disabled={edit}
             id='number'
             type='text'
             placeholder='Numero'
@@ -217,6 +215,7 @@ const FormUserDetails = () => {
         <CustomDiv dir={'column'} w={'250px'} gap={'var(--rtc-gap-xs)'}>
           <Label>Planta</Label>
           <input
+            disabled={edit}
             id='floor'
             type='text'
             placeholder='Planta'
@@ -226,6 +225,7 @@ const FormUserDetails = () => {
         <CustomDiv dir={'column'} w={'250px'} gap={'var(--rtc-gap-xs)'}>
           <Label>Puerta</Label>
           <input
+            disabled={edit}
             id='door'
             type='text'
             placeholder='Puerta'
@@ -237,6 +237,7 @@ const FormUserDetails = () => {
         <CustomDiv dir={'column'} w={'250px'} gap={'var(--rtc-gap-xs)'}>
           <Label>Código Postal</Label>
           <input
+            disabled={edit}
             id='postalCode'
             type='text'
             placeholder='Código postal'
@@ -263,6 +264,7 @@ const FormUserDetails = () => {
         <CustomDiv dir={'column'} w={'250px'} gap={'var(--rtc-gap-xs)'}>
           <Label>Ciudad</Label>
           <input
+            disabled={edit}
             id='city'
             type='text'
             placeholder='Ciudad'
@@ -289,6 +291,7 @@ const FormUserDetails = () => {
         <CustomDiv dir={'column'} w={'250px'} gap={'var(--rtc-gap-xs)'}>
           <Label>Provincia</Label>
           <input
+            disabled={edit}
             id='province'
             type='text'
             placeholder='Provincia'
@@ -313,45 +316,7 @@ const FormUserDetails = () => {
           ) : null}
         </CustomDiv>
       </CustomDiv>
-      <CustomDiv w={'100%'} ai={'flex-end'}>
-        <CustomDiv dir={'column'} w={'300px'} gap={'var(--rtc-gap-xs)'}>
-          <Label>Pago</Label>
-          <select
-            {...register('pay', {
-              required: {
-                value: true,
-                message: 'Obligatorio'
-              }
-            })}
-          >
-            {payMethod.map((pay, index) => {
-              return (
-                <option key={index} value={pay.value}>
-                  {pay.desc}
-                </option>
-              )
-            })}
-          </select>
-          {formState.errors.pay ? (
-            <CustomDiv jc={'flex-start'} padding={'0 var(--rtc-padding-s)'}>
-              <Paragraph
-                color={'var(--rtc-color-error)'}
-                fontweight={'bold'}
-                textalign={'center'}
-                textshadow={'var(--rtc-textShadow)'}
-              >
-                {formState.errors.pay.message}
-              </Paragraph>
-            </CustomDiv>
-          ) : null}
-        </CustomDiv>
-        <CustomDiv w={'300px'}>
-          <Paragraph color={'var(--rtc-color-white)'} fontsize={'30px'}>
-            Total: {totalPrice}€
-          </Paragraph>
-        </CustomDiv>
-      </CustomDiv>
-      <Button type={'submit'}>Comprar</Button>
+      <Button type={'submit'}>{btnName}</Button>
       {error ? (
         <CustomDiv>
           <Paragraph
@@ -375,8 +340,8 @@ const FormUserDetails = () => {
           </Paragraph>
         </CustomDiv>
       ) : null}
-    </StyledFormUserDetails>
+    </StyledFormProfile>
   )
 }
 
-export default FormUserDetails
+export default FormProfile

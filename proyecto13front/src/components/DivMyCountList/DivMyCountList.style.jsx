@@ -6,7 +6,7 @@ const StyledDivMyCountList = styled.div`
   justify-content: center;
   align-items: center;
   width: 150px;
-  height: 120px;
+  height: 200px;
   background-color: var(--rtc-background-greenHover);
   position: absolute;
   top: 50px;
