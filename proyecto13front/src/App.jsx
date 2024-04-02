@@ -18,6 +18,7 @@ import DelItemProvider from './provider/DelItemProvider'
 import Purchase from './pages/Purchase/Purchase'
 import SearchBook from './pages/SearchBook/SearchBook'
 import Sales from './pages/Sales/Sales'
+import Footer from './components/Footer/Footer'
 
 const App = () => {
   return (
@@ -46,6 +47,7 @@ const App = () => {
               <Route path='/*' element={<Home />}></Route>
             </Routes>
           </DelItemProvider>
+          <Footer></Footer>
         </NumCartProvider>
       </LoginProvider>
     </>

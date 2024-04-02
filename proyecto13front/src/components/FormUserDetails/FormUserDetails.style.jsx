@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { mobile, tablet } from '../../constants/mediasqueries'
 
 const StyledFormUserDetails = styled.form`
   display: flex;
@@ -15,6 +16,21 @@ const StyledFormUserDetails = styled.form`
     padding: var(--rtc-padding-xs);
     border-radius: var(--rtc-border-radius-button);
     border: none;
+  }
+
+  ${tablet} {
+    width: 450px;
+  }
+  ${mobile} {
+    width: 350px;
+    > div {
+      flex-direction: column;
+      align-items: center;
+    }
+    > div > div {
+      width: 90%;
+      padding-bottom: var(--rtc-padding-xs);
+    }
   }
 `
 

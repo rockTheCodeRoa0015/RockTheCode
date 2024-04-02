@@ -3,6 +3,7 @@ import { mobile, tablet } from '../../constants/mediasqueries'
 
 const StyledBookDetail = styled.section`
   margin-top: 140px;
+  min-height: calc(100svh - 190px);
   display: flex;
   justify-content: center;
   align-items: flex-start;

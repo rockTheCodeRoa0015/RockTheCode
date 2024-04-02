@@ -7,6 +7,7 @@ const StyledBasket = styled.section`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  min-height: calc(100svh - 190px);
   > div:nth-child(odd) {
     background-color: var(--rtc-color-grey);
   }
@@ -19,12 +20,38 @@ const StyledBasket = styled.section`
 
   ${tablet} {
     > div {
-      width: 80%;
+      width: 480px;
+    }
+    > div > div:nth-child(1) {
+      width: 100px;
+    }
+
+    > div > div:nth-child(2) {
+      display: none;
+    }
+    > div > div:nth-child(3) {
+      width: 100px;
+    }
+    > div > div:nth-child(4) {
+      width: 280px;
     }
   }
   ${mobile} {
     > div {
-      width: 90%;
+      width: 350px;
+    }
+    > div > div:nth-child(1) {
+      width: 100px;
+    }
+
+    > div > div:nth-child(2) {
+      display: none;
+    }
+    > div > div:nth-child(3) {
+      width: 70px;
+    }
+    > div > div:nth-child(4) {
+      width: 180px;
     }
   }
 `
